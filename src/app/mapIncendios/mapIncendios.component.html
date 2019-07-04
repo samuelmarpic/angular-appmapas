@@ -1,0 +1,45 @@
+<body style="text-align:center" >
+    <h1>
+        <br/>
+        <br/>
+      Mapa de Marcadores
+    </h1>
+    <h2>
+      En este mapa puedes visualizar tus marcadores guardados
+    </h2>
+    <head> 
+        <title>Ejemplo Radio Button</title> 
+    </head>
+    
+    <body class="radioBoton"> 
+    <form name=selTipoMarcador>
+    <input class="tipomarcradio-input" routerLink="/mapIncendios" routerLinkActive="active" type="Radio" name="tipoMarcadores" value="incendios" checked> <label class="tipomarc-input">Incendios</label>
+    <input class="tipomarcradio-input" routerLink="/mapCapitales" routerLinkActive="active" type="Radio" name="tipoMarcadores" value="capitales"> <label class="tipomarc-input">Capitales de Europa</label>
+    <input class="tipomarcradio-input" routerLink="/mapFavoritos" routerLinkActive="active" type="Radio" name="tipoMarcadores" value="fav"> <label class="tipomarc-input">Favoritos</label>
+    </form> 
+    </body> 
+    <br/>
+    <br/>
+    
+<div id="map">
+
+
+  </div>
+<br/>
+<label class="label-zoom">Zoom: </label><mat-slider [(ngModel)]="slidervalue" (change)="slidezoom()" min="1" max="10" value="slidervalue" step="1"></mat-slider>
+<br/>
+<button class="back" mat-raised-button color="primary" (click)="goBack()">Go Back</button>
+<h2>
+  Crear nuevo Marcador introduciendo las coordenadas
+</h2>
+<label class="nuevoMarcador-label">Nombre del marcador
+  <input class="nuevoMarcador-input" [(ngModel)]="nombremarker"/>
+</label>
+<label class="nuevoMarcador-label">Latitud del marcador
+  <input class="nuevoMarcador-input" [(ngModel)]="latmarker"/>
+</label>
+<label class="nuevoMarcador-label">Longitud del marcador
+  <input class="nuevoMarcador-input" [(ngModel)]="lonmarker"/>
+</label>   <button (click)="crear()">Crear</button>
+
+</body>

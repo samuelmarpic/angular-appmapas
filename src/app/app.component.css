@@ -1,0 +1,15 @@
+
+h1 {
+  color: #A54A1C;
+  font-family: verdana;
+  font-size: 300%
+}
+h2 {
+  color: #A5371C;
+  font-family: verdana;
+  font-size: 200%
+}
+.imTransf {
+  border: 5px solid black;
+}
+.imTransf:hover {filter: opacity(.5);}

@@ -1,0 +1,39 @@
+<body style="text-align:center" >
+<h1>
+    <br/>
+    <br/>
+  Mapa de Marcadores
+</h1>
+<h2>
+  En este mapa puedes visualizar tus marcadores guardados
+</h2>
+<head> 
+    <title>Ejemplo Radio Button</title> 
+</head>
+
+<body class="radioBoton"> 
+<form name=selTipoMarcador>
+<input class="tipomarcradio-input" routerLink="/mapIncendios" routerLinkActive="active" type="Radio" name="tipoMarcadores" value="incendios"> <label class="tipomarc-input">Incendios</label>
+<input class="tipomarcradio-input" routerLink="/mapCapitales" routerLinkActive="active" type="Radio" name="tipoMarcadores" value="capitales"> <label class="tipomarc-input">Capitales de Europa</label>
+<input class="tipomarcradio-input" routerLink="/mapFavoritos" routerLinkActive="active" type="Radio" name="tipoMarcadores" value="fav"> <label class="tipomarc-input">Favoritos</label>
+</form> 
+</body> 
+<br/>
+<br/>
+<tbody>
+  <tr *ngFor="let usuario of listarTablaUsuario">
+    <td>{{usuario.id}}</td>
+    <td>{{usuario.email}}</td>
+    <td>{{usuario.first_name}}</td>
+    <td>{{usuario.last_name}}</td>
+    <td>{{usuario.avatar}}</td>
+    <td>
+      <a href="#editarUsuarioModal" class="edit" data-toggle="modal">
+        <i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i>
+      </a>
+      <a href="#detalleUsuarioModal" class="detail" data-toggle="modal">
+        <i class="material-icons" data-toggle="tooltip" title="Detalle">&#xe0ee;</i>
+      </a>
+    </td>
+  </tr>
+</tbody>

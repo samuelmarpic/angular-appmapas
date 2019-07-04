@@ -1,0 +1,23 @@
+{
+"ciud":[ 
+           ["Dubai Airport", 25.25, 55.36],
+           ["London Airport", 51.50, 0.049],
+           ["Hong Kong Airport", 22.3098, 113.919],
+           ["Amsterdam Schiphol Airport", 52.308691, 4.761388],
+           ["París Airport", 49.009679, 2.547897],
+           ["Singapur Airport", 1.364001, 103.991419],
+           ["Seúl Airport", 37.459388, 126.441223],
+           ["Frankfurt Airport", 50.037744, 8.563800],
+           ["Bangkok Airport", 13.696335, 100.752894],
+           ["Taipei Airport", 25.080810, 121.236095],
+           ["Estambul Airport", 41.259911, 28.742679],
+           ["Koala Lumpur", 2.745570, 101.707180],
+           ["Madrid Airport", 40.496665, -3.567451],
+           ["Doha Airport", 25.264717, 51.559609],
+           ["Munich Airport", 48.353575, 11.775584],
+           ["Barcelona Airport", 41.297558, 2.083991],
+           ["Tokio Airport", 35.549419, 139.779962],
+           ["New York Airport", 40.641261, -73.778629],
+           ["Toronto Airport", 43.677710, -79.624823]
+         ]
+}

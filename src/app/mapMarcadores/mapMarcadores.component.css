@@ -1,0 +1,64 @@
+div{
+    margin: 0 auto;
+    height: 700px;
+    width: 50%;
+}
+h1 {
+  color: #7FA4B4;
+  font-family: verdana;
+  font-size: 300%
+}
+h2 {
+  color: #7FA4B4;
+  font-family: verdana;
+  font-size: 200%
+}
+  .nuevoMarcador-label {
+    display: inline-block;
+    width: 30em;
+    margin: .5em 0;
+    color: #5960CD;
+    font-weight: bold;
+  }
+  .nuevoMarcador-input {
+    height: 2em;
+    font-size: 1em;
+    padding-left: .4em;
+  }
+  button {
+    margin-top: 20px;
+    font-family: Arial;
+    background-color: #D1D1D7;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    cursor: hand;
+  }
+  button:hover {
+    background-color: #64D386;
+  }
+  button:disabled {
+    background-color: #eee;
+    color: #ccc;
+    cursor: auto;
+  }
+  mat-slider {
+    width: 300px;
+  }
+  .tipomarc-input {
+    font-size: 200%;
+    padding-right: 35px;
+    padding-left: 15px;
+  }
+  .tipomarcradio-input{
+    height: 40px;
+    width: 40px;
+    position: relative;
+    content: '✔';
+    display: inline-block;
+    font-size: 26.66667px;
+    text-align: center;
+    line-height: 40px;
+    top: 12.33333px;
+  }
