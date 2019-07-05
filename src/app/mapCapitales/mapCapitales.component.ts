@@ -78,6 +78,7 @@ export class MapCapitalesComponent implements OnInit {
     this.markers=this.myServiceService.getCapitales();
   }
   buscarCapital(){
+    var encontrado = false;
     var greenIcon = L.icon({
       iconUrl: 'leaf-green.png',
       shadowUrl: 'leaf-shadow.png',
@@ -91,7 +92,11 @@ export class MapCapitalesComponent implements OnInit {
     for(var i = 0; i<this.markers.length;i++){
       if(String(this.juegoCapi)==String(this.markers[i][0])){
         this.dibujar(String(this.markers[i][1]),String(this.markers[i][2]));
+        encontrado = true;
       }
+    }
+    if(!encontrado){
+      alert("Capital no encontrada");
     }
     
   }

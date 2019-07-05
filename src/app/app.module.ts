@@ -19,6 +19,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
 
 
 const appRoutes: Routes = [
@@ -56,7 +59,10 @@ const appRoutes: Routes = [
       MatFormFieldModule,
       MatRadioModule,
       MatButtonModule,
-      MatSelectModule
+      MatSelectModule,
+      MatTabsModule,
+      MatDividerModule,
+      MatListModule
    ],
    providers: [],
    bootstrap: [

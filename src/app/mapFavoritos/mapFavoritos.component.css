@@ -66,3 +66,21 @@ h2 {
   .label-zoom {
       font-size: 150%;
   }
+  .example-small-box, .example-large-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 16px;
+    padding: 16px;
+    border-radius: 8px;
+  }
+  
+  .example-large-box {
+    height: 300px;
+    width: 300px;
+  }
+  .nombreMarkerInput {
+    height: 2em;
+    font-size: 1em;
+    padding-left: .4em;
+  }

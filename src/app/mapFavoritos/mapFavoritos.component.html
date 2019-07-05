@@ -1,3 +1,10 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+crossorigin=""></script>
+
 <body style="text-align:center" >
     <h1>
         <br/>
@@ -21,25 +28,27 @@
     <br/>
     <br/>
     
-<div id="map">
-
-
+  <div id="map" data-mode="">
+    <input type="hidden" data-map-markers="" value="" name="map-geojson-data" />
   </div>
+  <mat-tab-group dynamicHeight>
+    <mat-tab label="Marcadores">
+      <div class="example-large-box mat-elevation-z4">
+        <mat-list>
+          <mat-label>Seleccionar Nombre del Marcador
+            </mat-label><input class="nombreMarkerInput" [(ngModel)]="nombreMark"/>
+          <mat-divider></mat-divider>
+          <mat-list-item>Item 2</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Item 3</mat-list-item>
+        </mat-list>
+      </div>
+    </mat-tab>
+    <mat-tab label="Long tab">
+      <div class="example-large-box mat-elevation-z4">
+        Large content
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 <br/>
-<label class="label-zoom">Zoom: </label><mat-slider [(ngModel)]="slidervalue" (change)="slidezoom()" min="1" max="10" value="slidervalue" step="1"></mat-slider>
-<br/>
-<button class="back" mat-raised-button color="primary" (click)="goBack()">Go Back</button>
-<h2>
-  Crear nuevo Marcador introduciendo las coordenadas
-</h2>
-<label class="nuevoMarcador-label">Nombre del marcador
-  <input class="nuevoMarcador-input" [(ngModel)]="nombremarker"/>
-</label>
-<label class="nuevoMarcador-label">Latitud del marcador
-  <input class="nuevoMarcador-input" [(ngModel)]="latmarker"/>
-</label>
-<label class="nuevoMarcador-label">Longitud del marcador
-  <input class="nuevoMarcador-input" [(ngModel)]="lonmarker"/>
-</label>   <button (click)="crear()">Crear</button>
-
 </body>
