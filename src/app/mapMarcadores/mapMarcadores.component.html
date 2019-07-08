@@ -20,20 +20,3 @@
 </body> 
 <br/>
 <br/>
-<tbody>
-  <tr *ngFor="let usuario of listarTablaUsuario">
-    <td>{{usuario.id}}</td>
-    <td>{{usuario.email}}</td>
-    <td>{{usuario.first_name}}</td>
-    <td>{{usuario.last_name}}</td>
-    <td>{{usuario.avatar}}</td>
-    <td>
-      <a href="#editarUsuarioModal" class="edit" data-toggle="modal">
-        <i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i>
-      </a>
-      <a href="#detalleUsuarioModal" class="detail" data-toggle="modal">
-        <i class="material-icons" data-toggle="tooltip" title="Detalle">&#xe0ee;</i>
-      </a>
-    </td>
-  </tr>
-</tbody>

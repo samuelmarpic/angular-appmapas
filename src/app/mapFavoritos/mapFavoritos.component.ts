@@ -3,7 +3,33 @@ import { Location } from '@angular/common';
 import * as $ from 'jquery';
 
 declare let L;
-
+const greenIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
+const blueIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+	iconSize: [25, 41],
+	iconAnchor: [12, 41],
+	popupAnchor: [1, -34],
+	shadowSize: [41, 41]
+});
+const redIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+	iconSize: [25, 41],
+	iconAnchor: [12, 41],
+	popupAnchor: [1, -34],
+	shadowSize: [41, 41]
+});
+var iconoMarcador=null;
+var nombreMarcador;
+var dibMarc = true;
 @Component({
   selector: 'app-mapFavoritos',
   templateUrl: './mapFavoritos.component.html',
@@ -11,8 +37,7 @@ declare let L;
 })
 export class MapFavoritosComponent implements OnInit {
   
-
-  nombremarker;
+  crosshairCursor = false;
   latmarker;
   lonmarker;
   slidervalue = 5;
@@ -25,11 +50,6 @@ export class MapFavoritosComponent implements OnInit {
   mapa=L.map;
   ngOnInit() {
 
-    var customIcon = new L.Icon({
-      iconUrl: 'https://image.flaticon.com/icons/svg/854/854866.svg',
-      iconSize: [50, 50],
-      iconAnchor: [25, 50]
-    });
 // We’ll add a OSM tile layer to our map
   var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -41,7 +61,14 @@ export class MapFavoritosComponent implements OnInit {
 
   // initialize the map on the "map" div with a given center and zoom
   var map = L.map('map').setView([38.9934, -1.8615], 14).addLayer(osm);
-
+  
+  /*if (this.crosshairCursor == true){
+    L.DomUtil.addClass(map._container, 'crosshair-cursor-enabled');
+    }*/
+  $("#addMarkerButton").on("click",function(){
+    L.DomUtil.addClass(map._container, 'crosshair-cursor-enabled');
+    dibMarc=true;
+  });
   // attaching function on map click
   map.on('click', onMapClick);
 
@@ -58,8 +85,9 @@ export class MapFavoritosComponent implements OnInit {
                   "coordinates": [e.latlng.lat, e.latlng.lng]
           }
       }
+      
       var marker;
-
+    if (iconoMarcador!=null && dibMarc == true){
       L.geoJson(geojsonFeature, {
         
           pointToLayer: function(feature, latlng){
@@ -71,14 +99,17 @@ export class MapFavoritosComponent implements OnInit {
                   color: "#000",
                   riseOnHover: true,
                   draggable: true,
-
-              }).bindPopup("<input value='nombreMark' class='marker-delete'/><br><input type='button' value='Delete this marker' class='marker-delete-button'/>");
+                  icon: iconoMarcador
+              }).bindPopup("<b>"+nombreMarcador+"</b>"+"<br/><input type='button' value='Delete this marker' class='marker-delete-button'/>");
 
               marker.on("popupopen", onPopupOpen);
        
               return marker;
           }
       }).addTo(map);
+      L.DomUtil.removeClass(map._container, 'crosshair-cursor-enabled');
+      dibMarc = false;
+    }
   }
 
 
@@ -125,5 +156,22 @@ export class MapFavoritosComponent implements OnInit {
   goBack(): void{
     this.location.back();
   }
-
+  selectGreen(): void{
+    iconoMarcador=greenIcon;
+    nombreMarcador=this.nombreMark;
+    this.nombreMark = null;
   }
+  selectBlue(): void{
+    iconoMarcador=blueIcon;
+    nombreMarcador=this.nombreMark;
+    this.nombreMark = null;
+  }
+  selectRed(): void{
+    iconoMarcador=redIcon;
+    nombreMarcador=this.nombreMark;
+    this.nombreMark = null;
+}
+  stopPropagation(event){
+    event.stopPropagation();
+  }
+}

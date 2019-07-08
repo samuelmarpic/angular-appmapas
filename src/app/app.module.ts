@@ -22,6 +22,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
 
 
 const appRoutes: Routes = [
@@ -62,7 +64,9 @@ const appRoutes: Routes = [
       MatSelectModule,
       MatTabsModule,
       MatDividerModule,
-      MatListModule
+      MatListModule,
+      MatMenuModule,
+      MatIconModule
    ],
    providers: [],
    bootstrap: [

@@ -28,15 +28,15 @@ h2 {
   button {
     margin-top: 20px;
     font-family: Arial;
-    background-color: #D1D1D7;
-    border: none;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(231, 231, 231);
     padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
     cursor: hand;
   }
   button:hover {
-    background-color: #64D386;
+    background-color: rgb(218, 228, 221);
   }
   button:disabled {
     background-color: #eee;
@@ -84,3 +84,35 @@ h2 {
     font-size: 1em;
     padding-left: .4em;
   }
+  #addMarkerButton {
+    position: absolute;
+    top: 1375px;
+    right: 1297px;
+    padding: 0px;
+    z-index: 400;
+  }
+  #addMarkerButton:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+  #botonVerde:hover{
+    background-color: rgb(35, 235, 8);
+    opacity: 0.8;
+  }
+  #botonAzul:hover{
+    background-color: rgb(0, 119, 255);
+    opacity: 0.8;
+  }
+  #botonRojo:hover{
+    background-color: rgb(255, 0, 0);
+    opacity: 0.8;
+  }
+  .markerInput {
+    height: 40px;
+    width: 80px;
+    padding-left: 5px;
+    margin-left: 9%;
+  }
+  .leaflet-container.crosshair-cursor-enabled {
+    cursor:crosshair;
+}
