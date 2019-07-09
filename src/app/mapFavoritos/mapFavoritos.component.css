@@ -92,20 +92,17 @@ h2 {
     z-index: 400;
   }
   #addMarkerButton:hover{
-    opacity: 0.8;
     cursor: pointer;
+    background-color: rgb(236, 236, 236);
 }
   #botonVerde:hover{
     background-color: rgb(35, 235, 8);
-    opacity: 0.8;
   }
   #botonAzul:hover{
     background-color: rgb(0, 119, 255);
-    opacity: 0.8;
   }
   #botonRojo:hover{
     background-color: rgb(255, 0, 0);
-    opacity: 0.8;
   }
   .markerInput {
     height: 40px;
@@ -115,4 +112,39 @@ h2 {
   }
   .leaflet-container.crosshair-cursor-enabled {
     cursor:crosshair;
+}
+#addPolygonButton {
+  position: absolute;
+  top: 1420px;
+  right: 1297px;
+  padding: 2px;
+  z-index: 400;
+}
+#addPolygonButton:hover{
+  cursor: pointer;
+  background-color: rgb(236, 236, 236);
+}
+.verde:hover{
+  background-color: rgb(35, 235, 8);
+}
+.azul:hover{
+  background-color: rgb(0, 119, 255);
+}
+.rojo:hover{
+  background-color: rgb(255, 0, 0);
+}
+#addPolygonButtonSelected {
+  position: absolute;
+  top: 1420px;
+  right: 1260px;
+  padding: 2px;
+  z-index: 400;
+  font-size: 250%;
+}
+#addPolygonButtonSelected:hover{
+  cursor: pointer;
+  background-color: rgb(236, 236, 236);
+}
+#imgIcono{
+  margin-right: 10px;
 }

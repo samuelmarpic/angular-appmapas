@@ -11,6 +11,7 @@ const greenIcon = new L.Icon({
     popupAnchor: [1, -34],
     shadowSize: [41, 41]
   });
+
 const blueIcon = new L.Icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -30,13 +31,20 @@ const redIcon = new L.Icon({
 var iconoMarcador=null;
 var nombreMarcador;
 var dibMarc = true;
+var poligono = [];
+var colorBorde=null;
+var colorRelleno=null;
+var verMarcadores=[];
 @Component({
   selector: 'app-mapFavoritos',
   templateUrl: './mapFavoritos.component.html',
   styleUrls: ['./mapFavoritos.component.css']
 })
 export class MapFavoritosComponent implements OnInit {
-  
+  imgGreenIcon="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png";
+  imgBlueIcon="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png"
+  imgRedIcon="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png";
+  imgIcon=[];
   crosshairCursor = false;
   latmarker;
   lonmarker;
@@ -46,6 +54,8 @@ export class MapFavoritosComponent implements OnInit {
   latitudClick = null;
   longitudClick = null;
   nombreMark: string;
+  nombrePoly: string;
+  verMarcadoresComp=[];
   constructor(private location: Location) { }
   mapa=L.map;
   ngOnInit() {
@@ -107,6 +117,8 @@ export class MapFavoritosComponent implements OnInit {
               return marker;
           }
       }).addTo(map);
+      verMarcadores.push([nombreMarcador]);
+      poligono.push([e.latlng.lat,e.latlng.lng]);
       L.DomUtil.removeClass(map._container, 'crosshair-cursor-enabled');
       dibMarc = false;
     }
@@ -127,30 +139,24 @@ export class MapFavoritosComponent implements OnInit {
           map.removeLayer(tempMarker);
       });
   }
-
-
-  // getting all the markers at once
-  function getAllMarkers() {
-    
-      var allMarkersObjArray = [];//new Array();
-      var allMarkersGeoJsonArray = [];//new Array();
-
-      $.each(map._layers, function (ml) {
-          //console.log(map._layers)
-          if (map._layers[ml].feature) {
-            
-              allMarkersObjArray.push(this)
-                                      allMarkersGeoJsonArray.push(JSON.stringify(this.toGeoJSON()))
-          }
-      })
-
-      console.log(allMarkersObjArray);
-      alert("total Markers : " + allMarkersGeoJsonArray.length + "\n\n" + allMarkersGeoJsonArray + "\n\n Also see your console for object view of this array" );
-  }
-    $(".get-markers").on("click", getAllMarkers);
-    function slidezoom(){
-        map.setZoom(this.slidervalue);
-    }
+      $("#addMarkerButton").on("click",function(){
+    L.DomUtil.addClass(map._container, 'crosshair-cursor-enabled');
+    dibMarc=true;
+  });
+  $("#addPolygonButtonSelected").hide();
+  $("#addPolygonButtonSelected").click(function(){
+    var principio = poligono[0];
+    poligono.push(principio);
+    L.polygon(poligono, 
+      { weight: 5,
+      strock: true,
+      color: colorBorde,
+      fillColor: colorRelleno
+      }).bindPopup("Hola").addTo(map);
+      poligono=[];
+      $("#addPolygonButton").show();
+      $("#addPolygonButtonSelected").hide();
+    });
   }
 
   goBack(): void{
@@ -159,19 +165,97 @@ export class MapFavoritosComponent implements OnInit {
   selectGreen(): void{
     iconoMarcador=greenIcon;
     nombreMarcador=this.nombreMark;
+    this.imgIcon.push([this.imgGreenIcon]);
+    this.verMarcadoresComp.push([this.nombreMark]);
     this.nombreMark = null;
   }
   selectBlue(): void{
     iconoMarcador=blueIcon;
     nombreMarcador=this.nombreMark;
+    this.imgIcon.push([this.imgBlueIcon]);
+    this.verMarcadoresComp.push([this.nombreMark]);
     this.nombreMark = null;
   }
   selectRed(): void{
     iconoMarcador=redIcon;
     nombreMarcador=this.nombreMark;
+    this.imgIcon.push([this.imgRedIcon]);
+    this.verMarcadoresComp.push([this.nombreMark]);
     this.nombreMark = null;
 }
   stopPropagation(event){
     event.stopPropagation();
+  }
+  selectBordeVerdeRellenoVerde(): void{
+    colorBorde='green';
+    colorRelleno='green';
+    if(poligono.length>0){
+    $("#addPolygonButton").hide();
+    $("#addPolygonButtonSelected").show();
+    }
+}
+  selectBordeVerdeRellenoAzul(): void{
+    colorBorde='green';
+    colorRelleno='blue';
+    if(poligono.length>0){
+      $("#addPolygonButton").hide();
+      $("#addPolygonButtonSelected").show();
+    }
+  }
+  selectBordeVerdeRellenoRojo(): void{
+    colorBorde='green';
+    colorRelleno='red';
+    if(poligono.length>0){
+      $("#addPolygonButton").hide();
+      $("#addPolygonButtonSelected").show();
+    }
+  }
+  selectBordeAzulRellenoVerde(): void{
+    colorBorde='blue';
+    colorRelleno='green';
+    if(poligono.length>0){
+      $("#addPolygonButton").hide();
+      $("#addPolygonButtonSelected").show();
+    }
+  }
+  selectBordeAzulRellenoAzul(): void{
+    colorBorde='blue';
+    colorRelleno='blue';
+    if(poligono.length>0){
+      $("#addPolygonButton").hide();
+      $("#addPolygonButtonSelected").show();
+    }
+  }
+  selectBordeAzulRellenoRojo(): void{
+    colorBorde='blue';
+    colorRelleno='red';
+    if(poligono.length>0){
+      $("#addPolygonButton").hide();
+      $("#addPolygonButtonSelected").show();
+    }
+  }
+  selectBordeRojoRellenoVerde(): void{
+    colorBorde='red';
+    colorRelleno='green';
+    if(poligono.length>0){
+      $("#addPolygonButton").hide();
+      $("#addPolygonButtonSelected").show();
+    }
+  }
+  selectBordeRojoRellenoAzul(): void{
+    colorBorde='red';
+    colorRelleno='blue';
+    if(poligono.length>0){
+      $("#addPolygonButton").hide();
+      $("#addPolygonButtonSelected").show();
+    }
+  }
+  selectBordeRojoRellenoRojo(): void{
+    colorBorde='red';
+    colorRelleno='red';
+    if(poligono.length>0){
+      $("#addPolygonButton").hide();
+      $("#addPolygonButtonSelected").show();
+    }
   }
 }
