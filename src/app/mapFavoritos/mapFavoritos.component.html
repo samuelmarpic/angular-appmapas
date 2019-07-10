@@ -86,21 +86,33 @@
 
   <mat-tab-group dynamicHeight>
     <mat-tab label="Marcadores">
-      <div class="example-large-box mat-elevation-z4">
           <table class="blueTable" mdbTable mdbTableScroll scrollY="true" maxHeight="200" bordered="true">
               <tbody>
+                  <thead>
+                      <td><b>Color</b></td><td><b>Nombre</b></td><td><b>Latitud</b></td><td><b>Longitud</b></td>
+                  </thead>
                 <tr *ngFor="let im of imgIcon; let i = index">
-                  <td><img id="imgIcono"src={{imgIcon[i]}} height="20px" width="13px"/></td>
+                  <td><img id="imgIcono"src={{imgIcon[i]}} height="30px" width="18px"/></td>
                   <td>{{verMarcadoresComp[i]}}</td>
+                  <td>{{verlatlngmarc[i]}}</td>
+                  <td>{{verlatlngmarc[i+1]}}</td>
                 </tr>
             </tbody>
             </table>
-      </div>
     </mat-tab>
     <mat-tab label="Polígonos">
-      <div class="example-large-box mat-elevation-z4">
-          
-      </div>
+        <table class="blueTable" mdbTable mdbTableScroll scrollY="true" maxHeight="200" bordered="true">
+            <tbody>
+                <thead>
+                    <td><b>Color Borde</b></td><td><b>Color Relleno</b></td><td><b>Nombre</b></td>
+                </thead>
+              <tr *ngFor="let im of verBorde; let i = index">
+                <td><img id="imgBorde" src={{verBorde[i]}} height="30px" width="18px"/></td>
+                <td><img id="imgRelleno"src={{verRelleno[i]}} height="30px" width="18px"/></td>
+                <td>{{verPolyComp[i]}}</td>
+              </tr>
+          </tbody>
+          </table>
     </mat-tab>
   </mat-tab-group>
 <br/>

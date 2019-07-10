@@ -44,6 +44,9 @@ export class MapFavoritosComponent implements OnInit {
   imgGreenIcon="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png";
   imgBlueIcon="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png"
   imgRedIcon="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png";
+  imgGreenColIcon="https://i.imgur.com/XrKKnih.png";
+  imgBlueColIcon="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAP8AAADGCAMAAAAqo6adAAAAA1BMVEUAAP79f+LBAAAASElEQVR4nO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+BsYAAAF7hZJ0AAAAAElFTkSuQmCC";
+  imgRedColIcon="https://i.ebayimg.com/images/i/281048636574-0-1/s-l1000.jpg";
   imgIcon=[];
   crosshairCursor = false;
   latmarker;
@@ -56,6 +59,10 @@ export class MapFavoritosComponent implements OnInit {
   nombreMark: string;
   nombrePoly: string;
   verMarcadoresComp=[];
+  verPolyComp=[];
+  verBorde=[];
+  verRelleno=[];
+  verlatlngmarc=[];
   constructor(private location: Location) { }
   mapa=L.map;
   ngOnInit() {
@@ -117,13 +124,13 @@ export class MapFavoritosComponent implements OnInit {
               return marker;
           }
       }).addTo(map);
-      verMarcadores.push([nombreMarcador]);
+      verMarcadores.push([Number(e.latlng.lat).toFixed(2)],[Number(e.latlng.lng).toFixed(2)]);
       poligono.push([e.latlng.lat,e.latlng.lng]);
       L.DomUtil.removeClass(map._container, 'crosshair-cursor-enabled');
       dibMarc = false;
     }
   }
-
+this.verlatlngmarc=verMarcadores;
 
 // Function to handle delete as well as other events on marker popup open
   function onPopupOpen() {
@@ -189,6 +196,9 @@ export class MapFavoritosComponent implements OnInit {
   selectBordeVerdeRellenoVerde(): void{
     colorBorde='green';
     colorRelleno='green';
+    this.verPolyComp.push([this.nombrePoly]);
+    this.verBorde.push([this.imgGreenColIcon]);
+    this.verRelleno.push([this.imgGreenColIcon]);
     if(poligono.length>0){
     $("#addPolygonButton").hide();
     $("#addPolygonButtonSelected").show();
@@ -197,6 +207,9 @@ export class MapFavoritosComponent implements OnInit {
   selectBordeVerdeRellenoAzul(): void{
     colorBorde='green';
     colorRelleno='blue';
+    this.verPolyComp.push([this.nombrePoly]);
+    this.verBorde.push([this.imgGreenColIcon]);
+    this.verRelleno.push([this.imgBlueColIcon]);
     if(poligono.length>0){
       $("#addPolygonButton").hide();
       $("#addPolygonButtonSelected").show();
@@ -205,6 +218,9 @@ export class MapFavoritosComponent implements OnInit {
   selectBordeVerdeRellenoRojo(): void{
     colorBorde='green';
     colorRelleno='red';
+    this.verPolyComp.push([this.nombrePoly]);
+    this.verBorde.push([this.imgGreenColIcon]);
+    this.verRelleno.push([this.imgRedColIcon]);
     if(poligono.length>0){
       $("#addPolygonButton").hide();
       $("#addPolygonButtonSelected").show();
@@ -213,6 +229,9 @@ export class MapFavoritosComponent implements OnInit {
   selectBordeAzulRellenoVerde(): void{
     colorBorde='blue';
     colorRelleno='green';
+    this.verPolyComp.push([this.nombrePoly]);
+    this.verBorde.push([this.imgBlueColIcon]);
+    this.verRelleno.push([this.imgGreenColIcon]);
     if(poligono.length>0){
       $("#addPolygonButton").hide();
       $("#addPolygonButtonSelected").show();
@@ -221,6 +240,9 @@ export class MapFavoritosComponent implements OnInit {
   selectBordeAzulRellenoAzul(): void{
     colorBorde='blue';
     colorRelleno='blue';
+    this.verPolyComp.push([this.nombrePoly]);
+    this.verBorde.push([this.imgBlueColIcon]);
+    this.verRelleno.push([this.imgBlueColIcon]);
     if(poligono.length>0){
       $("#addPolygonButton").hide();
       $("#addPolygonButtonSelected").show();
@@ -229,6 +251,9 @@ export class MapFavoritosComponent implements OnInit {
   selectBordeAzulRellenoRojo(): void{
     colorBorde='blue';
     colorRelleno='red';
+    this.verPolyComp.push([this.nombrePoly]);
+    this.verBorde.push([this.imgBlueColIcon]);
+    this.verRelleno.push([this.imgRedColIcon]);
     if(poligono.length>0){
       $("#addPolygonButton").hide();
       $("#addPolygonButtonSelected").show();
@@ -237,6 +262,9 @@ export class MapFavoritosComponent implements OnInit {
   selectBordeRojoRellenoVerde(): void{
     colorBorde='red';
     colorRelleno='green';
+    this.verPolyComp.push([this.nombrePoly]);
+    this.verBorde.push([this.imgRedColIcon]);
+    this.verRelleno.push([this.imgGreenColIcon]);
     if(poligono.length>0){
       $("#addPolygonButton").hide();
       $("#addPolygonButtonSelected").show();
@@ -245,6 +273,9 @@ export class MapFavoritosComponent implements OnInit {
   selectBordeRojoRellenoAzul(): void{
     colorBorde='red';
     colorRelleno='blue';
+    this.verPolyComp.push([this.nombrePoly]);
+    this.verBorde.push([this.imgRedColIcon]);
+    this.verRelleno.push([this.imgBlueColIcon]);
     if(poligono.length>0){
       $("#addPolygonButton").hide();
       $("#addPolygonButtonSelected").show();
@@ -253,6 +284,9 @@ export class MapFavoritosComponent implements OnInit {
   selectBordeRojoRellenoRojo(): void{
     colorBorde='red';
     colorRelleno='red';
+    this.verPolyComp.push([this.nombrePoly]);
+    this.verBorde.push([this.imgRedColIcon]);
+    this.verRelleno.push([this.imgRedColIcon]);
     if(poligono.length>0){
       $("#addPolygonButton").hide();
       $("#addPolygonButtonSelected").show();
