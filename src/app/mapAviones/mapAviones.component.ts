@@ -28,6 +28,7 @@ export class MapAvionesComponent implements OnInit {
     this.mapInit();
     this.markersInit();
     this.grupoLayerMapas();
+    
   }
 
   mapInit(){
@@ -119,5 +120,10 @@ export class MapAvionesComponent implements OnInit {
     
     this.mapa.setView([((aerOr[1]+aerDes[1])/2), ((aerOr[2]+aerDes[2])/2)]);
   }
+  }
+  prueba(){
+    sampleData.push({
+      ciud: ["hola",1,2]
+    })
   }
 }

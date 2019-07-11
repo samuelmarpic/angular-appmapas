@@ -1,25 +1,3 @@
-<body style="text-align:center" >
-    <h1>
-        <br/>
-        <br/>
-      Mapa de Marcadores
-    </h1>
-    <h2>
-      En este mapa puedes visualizar tus marcadores guardados
-    </h2>
-    <head> 
-        <title>Ejemplo Radio Button</title> 
-    </head>
-    
-    <body class="radioBoton"> 
-    <form name=selTipoMarcador>
-    <input class="tipomarcradio-input" routerLink="/mapIncendios" routerLinkActive="active" type="Radio" name="tipoMarcadores" value="incendios" > <label class="tipomarc-input">Incendios</label>
-    <input class="tipomarcradio-input" routerLink="/mapCapitales" routerLinkActive="active" type="Radio" name="tipoMarcadores" value="capitales" checked> <label class="tipomarc-input">Capitales de Europa</label>
-    <input class="tipomarcradio-input" routerLink="/mapFavoritos" routerLinkActive="active" type="Radio" name="tipoMarcadores" value="fav"> <label class="tipomarc-input">Favoritos</label>
-    </form> 
-    </body> 
-    <br/>
-    <br/>
 <div class="mapaConZoom">    
 <div class="mapa-div" id="map">
 
@@ -55,4 +33,3 @@
   <input class="nuevoMarcador-input" [(ngModel)]="lonmarker"/>
 </label>   <button (click)="crear()">Crear</button>
 </div>
-</body>

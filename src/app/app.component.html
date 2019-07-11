@@ -1,17 +1,25 @@
-<div style="text-align:center">
-
-  <h1>
-    Bienvenido a tu app para visualizar mapas
-  </h1>
-  <img class="no" width="700" alt="Angular Logo" src="https://leafletjs.com/examples/custom-icons/thumbnail.png">
-</div>
-<h2 style="text-align: center">¿Qué mapas deseas visualizar? </h2>
-<div style="text-align: center">
-    <img class="imTransf" routerLink="/mapMarcadores" routerLinkActive="active" width = "250" alt="mapaMarcadores" src="https://camo.githubusercontent.com/a0281bc5c0b55f8175fd3ed18c972b320c60e254/68747470733a2f2f7261772e6769746875622e636f6d2f6c766f6f6764742f4c6561666c65742e617765736f6d652d6d61726b6572732f6d61737465722f73637265656e73686f74732f73637265656e73686f742d736f66742e706e67" HSPACE="100" >
-    <img class="imTransf" routerLink="/mapTrenes" routerLinkActive="active" width = "300" alt="mapaTrenes" src="https://i.blogs.es/95e50f/maglev-china/450_1000.jpg" HSPACE="100">
-    <img class="imTransf" routerLink="/mapAviones" routerLinkActive="active" width = "300" alt="mapaAviones" src="https://gdb.voanews.com/2FCDB942-9AA3-4B7B-9A2E-7B1D29E7AAC1_w1023_r1_s.jpg" HSPACE="100">
-</div>
-<pre style="font-size:200%">
-                Mapa de marcadores               Mapa de trenes                  Mapa de aviones
-</pre>
+<mat-toolbar color="primary">
+   <mat-toolbar-row>
+      <nav>
+          <button class="homeButton" routerLink="/Principal" mat-flat-button color="primary">
+            <mat-icon class="headerIcon">home</mat-icon>
+            Home
+          </button>
+          <button class="homeButton" mat-flat-button color="primary" [matMenuTriggerFor]="menu">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQznyml2ftNT7AayjVsMmv8EJSw_-AjRXBfVBcbz2KENDFwvgc1XQ" width="24" height="28"/>
+              Marcadores</button>
+            <mat-menu #menu="matMenu">
+              <button class="item" routerLink="/mapIncendios" mat-menu-item>Incendios</button>
+              <button class="item" routerLink="/mapCapitales" mat-menu-item>Capitales De Europa</button>
+              <button class="item" routerLink="/mapFavoritos" mat-menu-item>Favoritos</button>
+            </mat-menu>
+          <button class="homeButton" routerLink="/mapTrenes" mat-flat-button color="primary">
+            <mat-icon class="headerIcon" >train</mat-icon>
+            Trenes</button>
+          <button class="homeButton" routerLink="/mapAviones" mat-flat-button color="primary">
+            <mat-icon class="headerIcon">airplanemode_active</mat-icon>
+            Aviones</button>
+      </nav>
+  </mat-toolbar-row>
+</mat-toolbar>
 <router-outlet></router-outlet>

@@ -3,3 +3,44 @@ div{
     height: 700px;
     width: 50%;
 }
+h1 {
+  color: #7FA4B4;
+  font-family: verdana;
+  font-size: 300%
+}
+h2 {
+  color: #7FA4B4;
+  font-family: verdana;
+  font-size: 200%
+}
+button {
+  margin-top: 20px;
+  font-family: Arial;
+  background-color: #D1D1D7;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+}
+  .nuevoMarcador-label {
+    display: inline-block;
+    width: 30em;
+    margin: .5em 0;
+    color: #5960CD;
+    font-weight: bold;
+  }
+  .nuevoMarcador-input {
+    height: 2em;
+    font-size: 1em;
+    padding-left: .4em;
+  }
+.vistaNormal-label {
+    display: inline-block;
+    font-size: 150%;
+    color: #5960CD;
+    font-weight: bold;
+  }
+  .vistaNormal-button {
+    margin-left: 20px;
+  }

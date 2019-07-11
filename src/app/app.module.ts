@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes, Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+/*import { InMemoryDataService }  from './in-memory-data.service';*/
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,17 +24,11 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
-import {MatIconModule} from '@angular/material/icon';
+import {MatIconModule} from '@angular/material';
+import { PrincipalComponent } from './Principal/Principal.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { TabsComponent } from './tabs/tabs.component';
 
-
-const appRoutes: Routes = [
-   { path: 'mapMarcadores', component: MapMarcadoresComponent},
-   { path: 'mapTrenes', component: MapTrenesComponent},
-   { path: 'mapAviones', component: MapAvionesComponent},
-   { path: 'mapIncendios', component: MapIncendiosComponent},
-   { path: 'mapFavoritos', component: MapFavoritosComponent},
-   { path: 'mapCapitales', component: MapCapitalesComponent}
-];
 @NgModule({
    declarations: [
       AppComponent,
@@ -42,15 +37,14 @@ const appRoutes: Routes = [
       MapAvionesComponent,
       MapIncendiosComponent,
       MapCapitalesComponent,
-      MapFavoritosComponent
+      MapFavoritosComponent,
+      PrincipalComponent,
+      TabsComponent
+      /*InMemoryDataService*/
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
-      RouterModule.forRoot(
-         appRoutes,
-         { enableTracing: true }
-      ),
       HttpClientModule,
       BrowserAnimationsModule,
       MatSliderModule,
@@ -66,6 +60,13 @@ const appRoutes: Routes = [
       MatDividerModule,
       MatListModule,
       MatMenuModule,
+      MatIconModule,
+      MatToolbarModule
+      /*HttpClientInMemoryWebApiModule.forRoot(
+         InMemoryDataService, { dataEncapsulation: false }
+       )*/
+   ],
+   exports:[
       MatIconModule
    ],
    providers: [],

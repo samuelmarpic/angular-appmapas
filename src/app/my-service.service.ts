@@ -1,13 +1,21 @@
 import { Injectable, ViewContainerRef } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+/*import { EstacionesMarkers } from './estacionesMarkers';*/
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 @Injectable({
   providedIn: 'root'
 })
 export class MyServiceService {
+
+  private estacionesUrl = 'api/estaciones';
+
+  
 
 constructor(private http: HttpClient) { }
   capitales = [
@@ -39,5 +47,10 @@ constructor(private http: HttpClient) { }
     return this.capitales;
   }
 
-  //archivos json
+  /*getEstaciones(): Observable<EstacionesMarkers[]>{
+    return this.http.get<EstacionesMarkers[]>(this.estacionesUrl)
+  }
+  addEstacion(estacion: EstacionesMarkers): Observable<EstacionesMarkers>{
+    return this.http.post<EstacionesMarkers>(this.estacionesUrl,estacion,httpOptions)
+  }*/
 }

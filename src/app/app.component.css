@@ -9,7 +9,17 @@ h2 {
   font-family: verdana;
   font-size: 200%
 }
+.homeButton {
+  font-size: 125%;
+}
+.item {
+  font-size: 125%;
+}
 .imTransf {
   border: 5px solid black;
+}
+.mat-icon {
+  height: 28px;
+  width: 24px;
 }
 .imTransf:hover {filter: opacity(.5);}

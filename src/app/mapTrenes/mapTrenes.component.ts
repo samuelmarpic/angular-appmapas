@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,} from '@angular/core';
+import { MyServiceService } from '../my-service.service';
+import { Location } from '@angular/common';
+/*import { EstacionesMarkers } from '../estacionesMarkers';*/
 declare let L;
 
 @Component({
@@ -7,8 +10,12 @@ declare let L;
   styleUrls: ['./mapTrenes.component.css']
 })
 export class MapTrenesComponent implements OnInit {
+  
+  /*estaciones: EstacionesMarkers[];*/
+  nuevoMarcador;
 
-  constructor() { }
+  constructor(private estacionService: MyServiceService,
+              private location: Location) { }
   mapa;
   ngOnInit() {
     this.mapRail();
@@ -34,5 +41,22 @@ export class MapTrenesComponent implements OnInit {
 	  attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Map style: &copy; <a href="https://www.OpenRailwayMap.org">OpenRailwayMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
     }).addTo(this.mapa);
   }
+  /*crear(nombre: string, latitud: string, longitud: string): void {
+    var m = L.marker([latitud,longitud],{draggable: true})
+      
+      .bindPopup(nombre)
+      .addTo(this.mapa);
 
+      nombre = nombre.trim();
+      latitud = latitud.trim();
+      longitud = longitud.trim();
+
+      if(!nombre && !latitud && !longitud) {return; }
+
+      this.estacionService.addEstacion({nombre, latitud, longitud} as EstacionesMarkers)
+      .subscribe(estacion => this.estaciones.push(estacion));
+  }*//*
+  goBack(): void {
+    this.location.back();
+  }*/
 }
