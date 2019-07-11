@@ -1,0 +1,20 @@
+{
+  "localizaciones": [
+    {
+      "nombre": "LocalizacionEjemplo",
+      "latitud": "48",
+      "longitud": "-2"
+    },
+    {
+      "nombre": "LocalizacionEjemplo2",
+      "latitud": "49",
+      "longitud": "-3"
+    },
+    {
+      "id": 4,
+      "nombre": "aa",
+      "latitud": "44",
+      "longitud": "44"
+    }
+  ]
+}

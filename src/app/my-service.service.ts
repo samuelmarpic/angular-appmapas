@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Localizacion } from './localizacion';
 /*import { EstacionesMarkers } from './estacionesMarkers';*/
 
 const httpOptions = {
@@ -12,7 +13,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class MyServiceService {
-
+  url = 'http://localhost:3000';
   private estacionesUrl = 'api/estaciones';
 
   
@@ -47,10 +48,11 @@ constructor(private http: HttpClient) { }
     return this.capitales;
   }
 
-  /*getEstaciones(): Observable<EstacionesMarkers[]>{
-    return this.http.get<EstacionesMarkers[]>(this.estacionesUrl)
+  getLocalizaciones(): Observable<Localizacion[]> {
+    return this.http.get<Localizacion[]>(this.url+'/localizaciones');
   }
-  addEstacion(estacion: EstacionesMarkers): Observable<EstacionesMarkers>{
-    return this.http.post<EstacionesMarkers>(this.estacionesUrl,estacion,httpOptions)
-  }*/
+  addLocalizacion(loc: Localizacion):Observable<Localizacion>{
+    console.log(loc.nombre);
+    return this.http.post<Localizacion>(this.url+'/localizaciones/',JSON.stringify(loc),httpOptions);
+  }
 }

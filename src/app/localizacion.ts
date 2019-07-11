@@ -1,5 +1,3 @@
 export class Localizacion {
-  nombre: string;
-  latitud: string;
-  longitud: string;
+  constructor(  public nombre: string, public latitud: string, public longitud: string){};
 }

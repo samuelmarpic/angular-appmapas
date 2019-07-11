@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-/*import { InMemoryDataService }  from './in-memory-data.service';*/
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -40,7 +38,6 @@ import { TabsComponent } from './tabs/tabs.component';
       MapFavoritosComponent,
       PrincipalComponent,
       TabsComponent
-      /*InMemoryDataService*/
    ],
    imports: [
       BrowserModule,
@@ -62,9 +59,6 @@ import { TabsComponent } from './tabs/tabs.component';
       MatMenuModule,
       MatIconModule,
       MatToolbarModule
-      /*HttpClientInMemoryWebApiModule.forRoot(
-         InMemoryDataService, { dataEncapsulation: false }
-       )*/
    ],
    exports:[
       MatIconModule
