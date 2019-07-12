@@ -1,2 +1,3 @@
-<div id="map"></div>
-<app-tabs></app-tabs>
+<app-mapa></app-mapa>
+<app-tabs (normal)="verMapaTopo($event)"
+          (topo)="verMapaNormal($event)"></app-tabs>

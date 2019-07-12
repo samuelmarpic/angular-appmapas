@@ -26,6 +26,7 @@ import {MatIconModule} from '@angular/material';
 import { PrincipalComponent } from './Principal/Principal.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { TabsComponent } from './tabs/tabs.component';
+import { MapaComponent } from './mapa/mapa.component';
 
 @NgModule({
    declarations: [
@@ -37,7 +38,8 @@ import { TabsComponent } from './tabs/tabs.component';
       MapCapitalesComponent,
       MapFavoritosComponent,
       PrincipalComponent,
-      TabsComponent
+      TabsComponent,
+      MapaComponent
    ],
    imports: [
       BrowserModule,
@@ -60,12 +62,12 @@ import { TabsComponent } from './tabs/tabs.component';
       MatIconModule,
       MatToolbarModule
    ],
-   exports:[
+   exports: [
       MatIconModule
    ],
    providers: [],
    bootstrap: [
-   AppComponent
+      AppComponent
    ]
 })
 export class AppModule { }
