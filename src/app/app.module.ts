@@ -27,6 +27,7 @@ import { PrincipalComponent } from './Principal/Principal.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { TabsComponent } from './tabs/tabs.component';
 import { MapaComponent } from './mapa/mapa.component';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
    declarations: [
@@ -60,7 +61,8 @@ import { MapaComponent } from './mapa/mapa.component';
       MatListModule,
       MatMenuModule,
       MatIconModule,
-      MatToolbarModule
+      MatToolbarModule,
+      FlexLayoutModule
    ],
    exports: [
       MatIconModule

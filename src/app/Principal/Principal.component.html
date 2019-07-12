@@ -1,3 +1,15 @@
-<app-mapa></app-mapa>
-<app-tabs (normal)="verMapaTopo($event)"
-          (topo)="verMapaNormal($event)"></app-tabs>
+<div class="container"  fxLayout
+                        fxLayout.xs="column"
+                        fxLayoutAlign="center"
+                        fxLayoutGap="10%"
+                        fxLayoutGap.xs="0">
+    <div class="item item-1"fxFlex="55%"> 
+    <app-mapa [mapaNormal]="mapaNormal"
+              [mapaTopo]="mapaTopo"></app-mapa>
+    </div>
+    <div class="item item-2" fxFlex="35%">
+    <app-tabs (topo)="verMapaTopo($event)"
+              (normal)="verMapaNormal($event)">
+    </app-tabs>
+    </div>
+</div>

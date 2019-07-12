@@ -9,9 +9,15 @@
   .example-small-box {
     height: 100px;
     width: 100px;
+    margin: center;
+    justify-content: center;
   }
   
   .example-large-box {
     height: 300px;
     width: 300px;
+    margin: center;
+  }
+  ::ng-deep .mat-tab-labels{
+    justify-content: center; /* align items in Main Axis */
   }

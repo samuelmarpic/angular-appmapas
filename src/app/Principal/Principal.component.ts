@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MyServiceService } from '../my-service.service';
+import { MapaComponent } from '../mapa/mapa.component';
 import { Localizacion } from '../localizacion';
 
 @Component({
@@ -9,9 +10,10 @@ import { Localizacion } from '../localizacion';
 })
 export class PrincipalComponent implements OnInit {
 
-  public mapaNormal;
-  public mapaTopo;
+  public mapaNormal=false;
+  public mapaTopo=false;
   constructor(private servicio: MyServiceService) { }
+  m:MapaComponent;
 
   localizaciones: Localizacion[];
   ngOnInit() {
@@ -30,8 +32,12 @@ export class PrincipalComponent implements OnInit {
   }
   verMapaTopo(){
     this.mapaTopo=true;
+    this.ngOnInit();
+    this.mapaNormal=false;
   }
   verMapaNormal(){
     this.mapaNormal=true;
+    this.ngOnInit();
+    this.mapaTopo=false;
   }
 }
