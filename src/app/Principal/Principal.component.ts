@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MyServiceService } from '../my-service.service';
 import { MapaComponent } from '../mapa/mapa.component';
+import { TabsComponent } from '../tabs/tabs.component';
 import { Localizacion } from '../localizacion';
 
 @Component({
@@ -10,10 +11,15 @@ import { Localizacion } from '../localizacion';
 })
 export class PrincipalComponent implements OnInit {
 
-  public mapaNormal=false;
-  public mapaTopo=false;
+  @ViewChild(MapaComponent, {static: false}) m: MapaComponent;
+  
+  @ViewChild(TabsComponent, {static: false}) t: TabsComponent;
+
+  ngAfterViewInit() {
+
+  }
+
   constructor(private servicio: MyServiceService) { }
-  m:MapaComponent;
 
   localizaciones: Localizacion[];
   ngOnInit() {
@@ -31,13 +37,29 @@ export class PrincipalComponent implements OnInit {
     this.servicio.addLocalizacion(loc).subscribe(loc => {this.localizaciones.push(loc);});
   }
   verMapaTopo(){
-    this.mapaTopo=true;
-    this.ngOnInit();
-    this.mapaNormal=false;
+    this.m.verMapaTopo();
   }
   verMapaNormal(){
-    this.mapaNormal=true;
-    this.ngOnInit();
-    this.mapaTopo=false;
+    this.m.verMapaNormal();
+  }
+  verMarcadoresIncendios(){
+    this.m.verMarcadoresIncendios();
+    this.t.dis="incendios";
+  }
+  verMarcadoresCapitales(){
+    this.m.verMarcadoresCapitales();
+    this.t.dis="capitales";
+  }
+  verMapaTrenes(){
+    this.m.verMapaTrenes();
+    this.t.dis="trenes";
+  }
+  verMapaAviones(){
+    this.m.verMapaAviones();
+    this.t.dis="aviones";
+  }
+  buscarCapi(cap:string){
+    this.m.juegoCapi=cap;
+    this.m.buscarCapital();
   }
 }

@@ -44,12 +44,24 @@ constructor(private http: HttpClient) { }
     ["Tallin",59.43,24.75],
     ["Estocolmo",59.33,18.07]
   ];
-  getCapitales() {
+  /*getCapitales() {
     return this.capitales;
-  }
+  }*/
 
   getLocalizaciones(): Observable<Localizacion[]> {
     return this.http.get<Localizacion[]>(this.url+'/localizaciones');
+  }
+  getIncendios(): Observable<Localizacion[]> {
+    return this.http.get<Localizacion[]>(this.url+'/incendios');
+  }
+  getCapitales(): Observable<Localizacion[]> {
+    return this.http.get<Localizacion[]>(this.url+'/capitales');
+  }
+  getEstaciones(): Observable<Localizacion[]> {
+    return this.http.get<Localizacion[]>(this.url+'/estaciones');
+  }
+  getAeropuertos(): Observable<Localizacion[]> {
+    return this.http.get<Localizacion[]>(this.url+'/aeropuertos');
   }
   addLocalizacion(loc: Localizacion):Observable<Localizacion>{
     console.log(loc.nombre);

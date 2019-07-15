@@ -1,15 +1,19 @@
 <div class="container"  fxLayout
                         fxLayout.xs="column"
                         fxLayoutAlign="center"
-                        fxLayoutGap="10%"
+                        fxLayoutGap="5%"
                         fxLayoutGap.xs="0">
-    <div class="item item-1"fxFlex="55%"> 
-    <app-mapa [mapaNormal]="mapaNormal"
-              [mapaTopo]="mapaTopo"></app-mapa>
+    <div class="item-1"fxFlex="55%"> 
+    <app-mapa ></app-mapa>
     </div>
-    <div class="item item-2" fxFlex="35%">
+    <div class="item-2" fxFlex="35%" space-around>
     <app-tabs (topo)="verMapaTopo($event)"
-              (normal)="verMapaNormal($event)">
+              (normal)="verMapaNormal($event)"
+              (incendios)="verMarcadoresIncendios($event)"
+              (capitales)="verMarcadoresCapitales($event)"
+              (trenes)="verMapaTrenes($event)"
+              (buscarCapi)="buscarCapi($event)"
+              (aviones)="verMapaAviones($event)">
     </app-tabs>
     </div>
 </div>

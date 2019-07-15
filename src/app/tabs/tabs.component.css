@@ -1,23 +1,54 @@
-.example-small-box, .example-large-box {
-    display: flex;
+.example-small-box, .elegirMapaBox {
     justify-content: center;
-    margin: 16px;
-    padding: 16px;
-    border-radius: 8px;
+    margin: 0 auto;
+    margin-top:2%;
+    margin-bottom: 2%;
+    padding: 2%;
+    border-radius: 1%;
   }
   
   .example-small-box {
     height: 100px;
     width: 100px;
-    margin: center;
     justify-content: center;
   }
   
-  .example-large-box {
-    height: 300px;
-    width: 300px;
+  .elegirMapaBox {
+    height: 85%;
+    width: 50%;
     margin: center;
+  }
+  .botonesEM {
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+  mat-divider {
+    margin-top: 2%;
+    margin-bottom: 2%;
   }
   ::ng-deep .mat-tab-labels{
     justify-content: center; /* align items in Main Axis */
+  }
+  .botonJugarCapi{
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .juego-label{
+    font-size: 200%;
+    color: rgb(77, 84, 194);
+    text-align: center;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .juego-input{
+    font-size: 200%;
+    padding-right: 25px;
+    padding-left: 10px;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2%;
+    margin-top: 2%;
   }

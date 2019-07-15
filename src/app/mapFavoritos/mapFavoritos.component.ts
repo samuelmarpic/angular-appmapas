@@ -65,6 +65,7 @@ export class MapFavoritosComponent implements OnInit {
   verlatlngmarc=[];
   constructor(private location: Location) { }
   mapa=L.map;
+
   ngOnInit() {
 
 // We’ll add a OSM tile layer to our map
