@@ -154,7 +154,7 @@ export class MapaComponent implements OnInit {
   buscarCapital(){
     var encontrado = false;
     for(var i = 0; i<this.capitales.length;i++){
-      if(String(this.juegoCapi)==String(this.capitales[i].nombre)){
+      if((String(this.juegoCapi).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ""))==(String(this.capitales[i].nombre).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ""))){
         this.dibujarCapi(String(this.capitales[i].latitud),String(this.capitales[i].longitud));
         encontrado = true;
       }
@@ -183,5 +183,19 @@ export class MapaComponent implements OnInit {
         .bindPopup(this.aeropuertos[i].nombre)
         .addTo(this.map);
     }
+  }
+  dibujarVuelo(aerOr: Localizacion, aerDes: Localizacion) {
+    var polylinePoints = [
+      [aerOr.latitud, aerOr.longitud],
+      [aerDes.latitud, aerDes.longitud]
+    ];
+    if(aerOr.nombre=aerDes.nombre){
+    var polyline = L.polyline(polylinePoints, 
+      { weight: 10,
+      strock: true,
+      color: 'red',
+      }).addTo(this.map);
+    this.map.setView([((Number(aerOr.latitud)+Number(aerDes.latitud))/2), ((Number(aerOr.longitud)+Number(aerDes.longitud))/2)]);
+  }
   }
 }

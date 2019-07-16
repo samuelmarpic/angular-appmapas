@@ -28,7 +28,10 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { TabsComponent } from './tabs/tabs.component';
 import { MapaComponent } from './mapa/mapa.component';
 import { FlexLayoutModule } from "@angular/flex-layout";
-
+import {MatTableModule} from '@angular/material/table';
+import { MatInputModule } from '@angular/material';
+import {MatDialogModule} from '@angular/material/dialog';
+import { BorrarIncendioDialogComponent } from './mapIncendios/borrarIncendioDialog/borrarIncendioDialog.component';
 @NgModule({
    declarations: [
       AppComponent,
@@ -40,7 +43,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
       MapFavoritosComponent,
       PrincipalComponent,
       TabsComponent,
-      MapaComponent
+      MapaComponent,
+      BorrarIncendioDialogComponent
    ],
    imports: [
       BrowserModule,
@@ -62,10 +66,17 @@ import { FlexLayoutModule } from "@angular/flex-layout";
       MatMenuModule,
       MatIconModule,
       MatToolbarModule,
-      FlexLayoutModule
+      FlexLayoutModule,
+      MatTableModule,
+      MatInputModule,
+      MatDialogModule
+   ],
+   entryComponents: [
+      BorrarIncendioDialogComponent
    ],
    exports: [
-      MatIconModule
+      MatIconModule,
+      MatDialogModule
    ],
    providers: [],
    bootstrap: [

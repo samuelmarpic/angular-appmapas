@@ -4,6 +4,7 @@ import { MapaComponent } from '../mapa/mapa.component';
 import { TabsComponent } from '../tabs/tabs.component';
 import { Localizacion } from '../localizacion';
 
+declare let L;
 @Component({
   selector: 'app-Principal',
   templateUrl: './Principal.component.html',
@@ -60,6 +61,22 @@ export class PrincipalComponent implements OnInit {
   }
   buscarCapi(cap:string){
     this.m.juegoCapi=cap;
+    this.t.juegoCapi=null;
     this.m.buscarCapital();
+  }
+  dibujarVuelo(){
+      for (var i = 0; i < this.t.aeropuertos.length; i++) {
+        if(String(this.t.valorOrigen)==String(this.t.aeropuertos[i].nombre)){
+          var aerOr: Localizacion = this.t.aeropuertos[i];
+        }
+        if(String(this.t.valorDestino)==String(this.t.aeropuertos[i].nombre)){
+          var aerDes: Localizacion = this.t.aeropuertos[i];
+        }
+      }
+      
+      this.t.distanciapuntos= Number((L.latLng(aerOr.latitud, aerOr.longitud).distanceTo(L.latLng(aerDes.latitud, aerDes.longitud))/1000).toFixed(2));
+      this.m.dibujarVuelo(aerOr,aerDes);
+      this.t.valorOrigen=null;
+      this.t.valorDestino=null;
   }
 }

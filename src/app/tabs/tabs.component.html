@@ -26,4 +26,45 @@
       <label class="juego-label">Introducir Nombre De Capital</label> 
       <input class="juego-input" [(ngModel)]="juegoCapi"/>
       <button class="botonJugarCapi" mat-raised-button color="primary" (click)="buscarCapi.emit(juegoCapi)">Buscar</button>
+      <button class="botonJugarCapi" mat-raised-button color="primary" (click)="pararJugar()">Parar de jugar</button>
   </div>
+
+  <button *ngIf="dis=='aviones' && verV==false" class="botonJugarCapi" mat-raised-button color="primary" (click)="verVuelo()">Ver Vuelo</button>
+  <mat-card *ngIf="dis=='aviones' && verV==true"class="example-card">
+      <mat-card-header id="verVueloHeader">
+        <div mat-card-avatar class="example-header-image">
+        </div><mat-card-title class="tituloCard">Ver Un Vuelo</mat-card-title>
+      </mat-card-header>
+      <br/>
+      <mat-card-content>
+          <h4>Origen</h4>
+          <mat-form-field>
+            <mat-label>Seleccionar</mat-label>
+            <mat-select [(ngModel)]="valorOrigen">
+              <mat-option *ngFor="let item of aeropuertos" [value]="item.nombre">
+                {{item.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <h4>Destino</h4>
+          <mat-form-field>
+            <mat-label>Seleccionar</mat-label>
+            <mat-select [(ngModel)]="valorDestino">
+              <mat-option *ngFor="let item of aeropuertos" [value]="item.nombre">
+                {{item.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br *ngIf="this.distanciapuntos!=0"/>
+          <br *ngIf="this.distanciapuntos!=0"/>
+          <br *ngIf="this.distanciapuntos!=0"/>
+          <mat-label class="labelDistancia" *ngIf="this.distanciapuntos!=0">La distancia del vuelo es: {{this.distanciapuntos}} km</mat-label>
+          <br *ngIf="this.valorOrigen==this.valorDestino && this.valorOrigen!=null"/>
+          <mat-label class="errorDistancia" *ngIf="this.valorOrigen==this.valorDestino && this.valorOrigen!=null">Error, selecciona un origen y un destino diferente</mat-label>
+        </mat-card-content>
+      <mat-card-actions>
+        <button id="verVu" mat-raised-button color="primary" (click)="dibujarVuelo.emit()">Ver Vuelo</button>
+      </mat-card-actions>
+    </mat-card>
+    <label>{{valorOrigen}}</label>
+    <label>{{valorDestino}}</label>

@@ -1,20 +1,41 @@
-<div id="map">
+<mat-table *ngIf="mostrarTabla" [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="latitud">
+      <mat-header-cell *matHeaderCellDef> Latitud </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.latitud}} </mat-cell>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="longitud">
+      <mat-header-cell *matHeaderCellDef> Longitud </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.longitud}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="editar/borrar">
+        <mat-header-cell *matHeaderCellDef> Editar/Borrar </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button class="edit" mat-flat-button>
+          <mat-icon class="headerIcon">edit</mat-icon>
+        </button> 
+          <button class="delete" mat-flat-button (click)="openDialog()">
+        <!--<button class="delete" mat-flat-button (click)="eliminarIncendio(element)">-->
+            <mat-icon class="headerIcon">delete</mat-icon>
+          </button> 
+      </mat-cell>
+      </ng-container>
 
-
-  </div>
-<br/>
-<label class="label-zoom">Zoom: </label><mat-slider [(ngModel)]="slidervalue" (change)="slidezoom()" min="1" max="10" value="slidervalue" step="1"></mat-slider>
-<br/>
-<button class="back" mat-raised-button color="primary" (click)="goBack()">Go Back</button>
-<h2>
-  Crear nuevo Marcador introduciendo las coordenadas
-</h2>
-<label class="nuevoMarcador-label">Nombre del marcador
-  <input class="nuevoMarcador-input" [(ngModel)]="nombremarker"/>
-</label>
-<label class="nuevoMarcador-label">Latitud del marcador
-  <input class="nuevoMarcador-input" [(ngModel)]="latmarker"/>
-</label>
-<label class="nuevoMarcador-label">Longitud del marcador
-  <input class="nuevoMarcador-input" [(ngModel)]="lonmarker"/>
-</label>   <button (click)="crear()">Crear</button>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>

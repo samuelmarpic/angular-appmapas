@@ -33,6 +33,7 @@
     display:block;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 2%;
   }
   .juego-label{
     font-size: 200%;
@@ -51,4 +52,27 @@
     margin-right: auto;
     margin-bottom: 2%;
     margin-top: 2%;
+  }
+  .labelDistancia{
+    font-size: 150%;
+  }
+  .errorDistancia{
+    color: red;
+    font-size: 80%;
+  }
+  .example-header-image {
+    background-image: url('https://image.flaticon.com/icons/svg/67/67076.svg');
+    background-size: cover;
+  }
+  .example-card {
+    max-width: 70%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .tituloCard {
+    margin-top: 10px;
+  }
+  #verVu {
+    margin:center;
+    margin-bottom: 2%;
   }

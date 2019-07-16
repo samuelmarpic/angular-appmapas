@@ -54,6 +54,7 @@ constructor(private http: HttpClient) { }
   getIncendios(): Observable<Localizacion[]> {
     return this.http.get<Localizacion[]>(this.url+'/incendios');
   }
+  
   getCapitales(): Observable<Localizacion[]> {
     return this.http.get<Localizacion[]>(this.url+'/capitales');
   }
@@ -66,5 +67,11 @@ constructor(private http: HttpClient) { }
   addLocalizacion(loc: Localizacion):Observable<Localizacion>{
     console.log(loc.nombre);
     return this.http.post<Localizacion>(this.url+'/localizaciones/',JSON.stringify(loc),httpOptions);
+  }
+  eliminarIncendio(incendio: Localizacion | number): Observable<Localizacion> {
+    const id = typeof incendio === 'number' ? incendio : incendio.id;
+    const urli = `${this.url+'/incendios'}/${id}`;
+  
+    return this.http.delete<Localizacion>(urli, httpOptions);
   }
 }

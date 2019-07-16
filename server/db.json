@@ -55,12 +55,6 @@
       "nombre": "Albacete",
       "latitud": "38.9934",
       "longitud": "-1.8515"
-    },
-    {
-      "id": 7,
-      "nombre": "Madrid",
-      "latitud": "40.437801",
-      "longitud": "-3.695407"
     }
   ],
   "capitales": [
@@ -71,7 +65,7 @@
       "longitud": "-3.695407"
     },
     {
-      "id":2,
+      "id": 2,
       "nombre": "Lisboa",
       "latitud": "38.71",
       "longitud": "-9.15"
@@ -89,7 +83,7 @@
       "longitud": "14.42"
     },
     {
-      "id":5,
+      "id": 5,
       "nombre": "Roma",
       "latitud": "41.90",
       "longitud": "12.45"
@@ -107,7 +101,7 @@
       "longitud": "-1.1"
     },
     {
-      "id":8,
+      "id": 8,
       "nombre": "Budapest",
       "latitud": "47.5",
       "longitud": "19.05"
@@ -125,7 +119,7 @@
       "longitud": "16.36"
     },
     {
-      "id":11,
+      "id": 11,
       "nombre": "Oslo",
       "latitud": "59.9",
       "longitud": "10.79"
@@ -143,7 +137,7 @@
       "longitud": "7.45"
     },
     {
-      "id":14,
+      "id": 14,
       "nombre": "Helsinki",
       "latitud": "60.17",
       "longitud": "24.94"
@@ -161,7 +155,7 @@
       "longitud": "7.45"
     },
     {
-      "id":17,
+      "id": 17,
       "nombre": "Zagreb",
       "latitud": "45.81",
       "longitud": "15.98"
@@ -179,7 +173,7 @@
       "longitud": "12.57"
     },
     {
-      "id":20,
+      "id": 20,
       "nombre": "Berlín",
       "latitud": "52.52",
       "longitud": "13.407"
@@ -191,7 +185,7 @@
       "longitud": "17.1058"
     },
     {
-      "id":22,
+      "id": 22,
       "nombre": "Tallin",
       "latitud": "59.43",
       "longitud": "24.75"
@@ -204,7 +198,7 @@
     }
   ],
   "estaciones": [
-    { 
+    {
       "id": 1,
       "nombre": "Amberes-Central",
       "latitud": "51.217222",
@@ -216,7 +210,7 @@
       "latitud": "51.531424",
       "longitud": "-0.126144"
     },
-    { 
+    {
       "id": 3,
       "nombre": "Grand Central",
       "latitud": "40.752737",
@@ -228,55 +222,55 @@
       "latitud": "48.880949",
       "longitud": "2.355314"
     },
-    { 
+    {
       "id": 5,
       "nombre": "Milano Centrale",
       "latitud": "45.487015",
       "longitud": "9.205480"
     },
-    { 
-      "id":6,
+    {
+      "id": 6,
       "nombre": "Kuala Lumpur",
       "latitud": "3.139744",
       "longitud": "101.693727"
     },
-    { 
+    {
       "id": 7,
       "nombre": "São Bento",
       "latitud": "41.145666",
       "longitud": "-8.610528"
     },
-    { 
+    {
       "id": 8,
       "nombre": "Madrid Atocha",
       "latitud": "40.406761",
       "longitud": "-3.691099"
     },
-    { 
+    {
       "id": 9,
       "nombre": "Sirkeci Station",
       "latitud": "41.015015",
       "longitud": "28.976447"
     },
-    { 
+    {
       "id": 10,
       "nombre": "Chhatrapati Shivaji",
       "latitud": "18.939846",
       "longitud": "72.835444"
     },
-    { 
+    {
       "id": 11,
       "nombre": "CMF RAILWAY ",
       "latitud": "18.969671",
       "longitud": "72.819389"
     },
-    { 
+    {
       "id": 12,
       "nombre": "Union Station",
       "latitud": "38.897896",
       "longitud": "-77.005745"
     },
-    { 
+    {
       "id": 13,
       "nombre": "Amsterdam Central",
       "latitud": "52.379135",
@@ -288,7 +282,7 @@
       "latitud": "48.844435",
       "longitud": "2.374383"
     },
-    { 
+    {
       "id": 15,
       "nombre": "Haydarpasa Terminal",
       "latitud": "40.996889",
@@ -300,21 +294,22 @@
       "latitud": "-23.535030",
       "longitud": "-46.635309"
     },
-    { 
+    {
       "id": 17,
       "nombre": "Kazansky",
       "latitud": "55.773627",
-      "longitud": "37.656748"}
+      "longitud": "37.656748"
+    }
   ],
   "aeropuertos": [
-    { 
+    {
       "id": 1,
       "nombre": "Dubai Airport",
       "latitud": "25.25",
       "longitud": "55.36"
     },
     {
-      "id":2,
+      "id": 2,
       "nombre": "London Airport",
       "latitud": "25.25",
       "longitud": "0.049"
@@ -332,7 +327,7 @@
       "longitud": "4.761388"
     },
     {
-      "id":5,
+      "id": 5,
       "nombre": "París Airport",
       "latitud": "49.009679",
       "longitud": "2.547897"
@@ -350,7 +345,7 @@
       "longitud": "126.441223"
     },
     {
-      "id":8,
+      "id": 8,
       "nombre": "Frankfurt Airport",
       "latitud": "50.037744",
       "longitud": "8.563800"
@@ -368,7 +363,7 @@
       "longitud": "121.236095"
     },
     {
-      "id":11,
+      "id": 11,
       "nombre": "Estambul Airport",
       "latitud": "41.259911",
       "longitud": "28.742679"
@@ -386,7 +381,7 @@
       "longitud": "-3.567451"
     },
     {
-      "id":14,
+      "id": 14,
       "nombre": "Doha Airport",
       "latitud": "25.264717",
       "longitud": "51.559609"
@@ -404,7 +399,7 @@
       "longitud": "2.083991"
     },
     {
-      "id":17,
+      "id": 17,
       "nombre": "Tokio Airport",
       "latitud": "35.549419",
       "longitud": "139.779962"
