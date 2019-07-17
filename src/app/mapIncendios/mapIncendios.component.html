@@ -26,10 +26,10 @@
     <ng-container matColumnDef="editar/borrar">
         <mat-header-cell *matHeaderCellDef> Editar/Borrar </mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <button class="edit" mat-flat-button>
+          <button class="edit" mat-flat-button (click)="openDialogEdit(element)">
           <mat-icon class="headerIcon">edit</mat-icon>
         </button> 
-          <button class="delete" mat-flat-button (click)="openDialog()">
+          <button class="delete" mat-flat-button (click)="openDialog(element)">
         <!--<button class="delete" mat-flat-button (click)="eliminarIncendio(element)">-->
             <mat-icon class="headerIcon">delete</mat-icon>
           </button> 
@@ -39,3 +39,6 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
+  <button mat-raised-button class="añadir" color="primary" cdkFocusInitial>+</button>
+
+  

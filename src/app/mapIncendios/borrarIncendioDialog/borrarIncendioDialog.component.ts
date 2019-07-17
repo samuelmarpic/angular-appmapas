@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogClose} from '@angular/material/dialog';
+import { DialogData } from '../mapIncendios.component';
 
 @Component({
   selector: 'app-borrarIncendioDialog',
@@ -9,7 +10,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 export class BorrarIncendioDialogComponent implements OnInit {
 
   constructor(
-    public dialogRef: MatDialogRef<BorrarIncendioDialogComponent>
+    public dialogRef: MatDialogRef<BorrarIncendioDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) { }
 
   ngOnInit() {
@@ -17,5 +19,8 @@ export class BorrarIncendioDialogComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+  si(): void {
+    this.dialogRef.close(this.data.borrar=true);
   }
 }

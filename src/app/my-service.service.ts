@@ -54,7 +54,16 @@ constructor(private http: HttpClient) { }
   getIncendios(): Observable<Localizacion[]> {
     return this.http.get<Localizacion[]>(this.url+'/incendios');
   }
+  eliminarIncendio(incendio: Localizacion | number): Observable<Localizacion> {
+    const id = typeof incendio === 'number' ? incendio : incendio.id;
+    const urli = `${this.url+'/incendios'}/${id}`;
   
+    return this.http.delete<Localizacion>(urli, httpOptions);
+  }
+  guardarIncendio(incendio: Localizacion |number): Observable<any> {
+    const id = typeof incendio === 'number' ? incendio : incendio.id;
+    return this.http.put(`${this.url+'/incendios'}/${id}`, JSON.stringify(incendio), httpOptions);
+  }
   getCapitales(): Observable<Localizacion[]> {
     return this.http.get<Localizacion[]>(this.url+'/capitales');
   }
@@ -68,10 +77,8 @@ constructor(private http: HttpClient) { }
     console.log(loc.nombre);
     return this.http.post<Localizacion>(this.url+'/localizaciones/',JSON.stringify(loc),httpOptions);
   }
-  eliminarIncendio(incendio: Localizacion | number): Observable<Localizacion> {
-    const id = typeof incendio === 'number' ? incendio : incendio.id;
-    const urli = `${this.url+'/incendios'}/${id}`;
-  
-    return this.http.delete<Localizacion>(urli, httpOptions);
+  añadirIncendio(inc: Localizacion):Observable<Localizacion>{
+    console.log(inc.nombre);
+    return this.http.post<Localizacion>(this.url+'/incendios/',JSON.stringify(inc),httpOptions);
   }
 }

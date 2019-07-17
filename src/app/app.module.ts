@@ -31,7 +31,9 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import {MatTableModule} from '@angular/material/table';
 import { MatInputModule } from '@angular/material';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { BorrarIncendioDialogComponent } from './mapIncendios/borrarIncendioDialog/borrarIncendioDialog.component';
+import { EditarIncendioDialogComponent } from './mapIncendios/editarIncendioDialog/editarIncendioDialog.component';
 @NgModule({
    declarations: [
       AppComponent,
@@ -44,7 +46,8 @@ import { BorrarIncendioDialogComponent } from './mapIncendios/borrarIncendioDial
       PrincipalComponent,
       TabsComponent,
       MapaComponent,
-      BorrarIncendioDialogComponent
+      BorrarIncendioDialogComponent,
+      EditarIncendioDialogComponent
    ],
    imports: [
       BrowserModule,
@@ -69,10 +72,12 @@ import { BorrarIncendioDialogComponent } from './mapIncendios/borrarIncendioDial
       FlexLayoutModule,
       MatTableModule,
       MatInputModule,
-      MatDialogModule
+      MatDialogModule,
+      MatButtonToggleModule
    ],
    entryComponents: [
-      BorrarIncendioDialogComponent
+      BorrarIncendioDialogComponent,
+      EditarIncendioDialogComponent
    ],
    exports: [
       MatIconModule,
