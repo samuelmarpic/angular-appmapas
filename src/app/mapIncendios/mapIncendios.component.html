@@ -36,9 +36,9 @@
       </mat-cell>
       </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
-  <button mat-raised-button class="añadir" color="primary" cdkFocusInitial>+</button>
+  <button mat-raised-button class="añadir" color="primary" (click)="openDialogCrear()">+</button>
 
   

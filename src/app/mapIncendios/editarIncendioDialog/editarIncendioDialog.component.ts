@@ -8,7 +8,7 @@ import { DialogData, DialogDataEdit } from '../mapIncendios.component';
   styleUrls: ['./editarIncendioDialog.component.css']
 })
 export class EditarIncendioDialogComponent implements OnInit {
-  nom = this.data.incendio.nombre;
+  nom = this.data.objeto.nombre;
   constructor(
     public dialogRef: MatDialogRef<EditarIncendioDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogDataEdit

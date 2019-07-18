@@ -1,126 +1,30 @@
-.mapa-div{
-    margin: 0 auto;
-    height: 700px;
-    width: 70%;
+table {
+  width: 100%;
 }
-h1 {
-    color: #7FA4B4;
-    font-family: verdana;
-    font-size: 300%
-  }
-h2 {
-    color: #7FA4B4;
-    font-family: verdana;
-    font-size: 200%
-  }
-.label-zoom {
-    font-size: 150%;
-}
-mat-slider {
-    width: 300px;
-    bottom: 1.53333px;
-  }
-  button {
-    margin-top: 20px;
-    font-family: Arial;
-    background-color: #D1D1D7;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    cursor: hand;
-  }
-  button:hover {
-    background-color: #64D386;
-  }
-  button:disabled {
-    background-color: #eee;
-    color: #ccc;
-    cursor: auto;
-  }
-  .verAeropuertos-label {
-    display: inline-block;
-    font-size: 150%;
-    color: #5960CD;
-    font-weight: bold;
-  }
-  .verAeropuertos-button {
-    margin-left: 20px;
-  }
-  .verVuelo-label {
-    margin-left: 50px;
-    display: inline-block;
-    font-size: 150%;
-    color: #5960CD;
-    font-weight: bold;
-  }
-  .verVuelo-button {
-    margin-left: 20px;
-  }
 
-  table.blueTable {
-    border: 1px solid #1C6EA4;
-    background-color: #EEEEEE;
-    /*width: 100%;*/
-    text-align: left;
-    border-collapse: collapse;
-    margin: 0 auto;
-  }
-  table.blueTable td, table.blueTable th {
-    border: 1px solid #AAAAAA;
-    padding: 20px 8px;
-    font-size: 20px;
-  }
-  table.blueTable tr:nth-child(even) {
-    background: #D0E4F5;
-  }
-  table.blueTable thead {
-    background: #1C6EA4;
-    background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-    background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-    background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-    border-bottom: 2px solid #444444;
-  }
-  table.blueTable thead th {
-    /*font-size: 15px;*/
-    font-weight: bold;
-    color: #FFFFFF;
-    border-left: 2px solid #D0E4F5;
-  }
-  table.blueTable thead th:first-child {
-    border-left: none;
-  }
-  tbody {
-    display:block;
-    height:300px;
-    overflow:auto;
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
 }
-  .back {
-    margin-left: 20px;
-  }
-  .example-card {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  .tituloCard {
-    margin-top: 10px;
-  }
-  
-  .example-header-image {
-    background-image: url('https://image.flaticon.com/icons/svg/67/67076.svg');
-    background-size: cover;
-  }
-  .my_polyline { 
-    stroke: green;
-    fill: none;
-    stroke-dasharray: 10,10; 
-    stroke-width: 5;  
-  }
-  .labelDistancia{
-    font-size: 150%;
-  }
-  .errorDistancia{
-    color: red;
-    font-size: 80%;
-
-  }
+.delete {
+  margin-left:2%;
+  color: rgb(255,255,255);
+  background-color: #D32F2F;
+}
+.edit {
+  color: rgb(255,255,255);
+  background-color: #FFC107;
+}
+.añadir {
+  display: block;
+  margin-top: 1%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 5%;
+  font-size: 150%;
+  background-color: #00C853;
+}
+.mat-elevation-z8 {
+  overflow-y: scroll;
+  max-height: 700px;
+}

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MyServiceService } from '../my-service.service';
-import { Location } from '@angular/common'
-
-declare let L;
+import { Localizacion } from '../localizacion';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { BorrarIncendioDialogComponent } from '../mapIncendios/borrarIncendioDialog/borrarIncendioDialog.component';
+import { EditarIncendioDialogComponent } from '../mapIncendios/editarIncendioDialog/editarIncendioDialog.component';
+import { CrearIncendioDialogComponent } from '../mapIncendios/crearIncendioDialog/crearIncendioDialog.component';
 
 @Component({
   selector: 'app-mapCapitales',
@@ -10,98 +12,84 @@ declare let L;
   styleUrls: ['./mapCapitales.component.css']
 })
 export class MapCapitalesComponent implements OnInit {
-
-  mapa;
-  markers;
-  nombremarker;
-  latmarker;
-  lonmarker;
-  juegoCapi = null;
-  buscar = false;
-  slidervalue = 5;
-  distancialat = 0.25;
-  distancialon = 0.25;
-  constructor(private myServiceService: MyServiceService,
-              private location: Location) { }
+  llama: string = "la capital";
+  llamaCrear: string = "una capital";
+  nombre: string;
+  latitud: string;
+  longitud: string;
+  mostrarTabla=false;
+  borrar: boolean = false;
+  code;
+  capitales;
+  displayedColumns: string[];
+  dataSource;
+  constructor(private servicio: MyServiceService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.mapInit();
     this.getCapitales();
-    this.markersInit();
-    this.grupoLayerMapas();
   }
-  mapInit(){
-    this.mapa = L.map('map').setView([48.95,8.45], 4);
-    
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(this.mapa);
+  getCapitales():void{
+    this.servicio.getCapitales().subscribe(capital => {
+      this.mostrar(capital);
+      this.capitales=capital;
+    });
   }
-  markersInit(){
-    for (var i = 0; i < this.markers.length; i++) {
-      var marker = new L.marker([this.markers[i][1],this.markers[i][2]])
-        .bindPopup(this.markers[i][0])
-        .addTo(this.mapa);
+  mostrar(capital){
+    this.displayedColumns = ['id', 'nombre', 'latitud', 'longitud', 'editar/borrar'];
+    this.dataSource = capital;
+    this.mostrarTabla=true;
+  }
+  eliminarCapital(capital: Localizacion): void{
+    this.capitales = this.capitales.filter(i => i!= capital);
+    this.servicio.eliminarCapital(capital).subscribe( res => {
+      this.dataSource = this.dataSource.filter(i => i !== capital);
+      this.code = `   `;
     }
+    );
   }
-  crear(){
-    var m = L.marker([this.latmarker,this.lonmarker],{draggable: true})
-      .bindPopup(this.nombremarker)
-      .addTo(this.mapa);
+  guardarCapital(capital: Localizacion): void{
+    this.servicio.guardarCapital(capital).subscribe();
   }
-  grupoLayerMapas(){
-
-    var topographic = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {id: 'MapID', attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'}),
-    streets   = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {id: 'MapID', attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}),
-    roads = L.tileLayer('https://maps.heigit.org/openmapsurfer/tiles/roads/webmercator/{z}/{x}/{y}.png', {id: 'MapID', attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> | Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}),
-    night = L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}', {id: 'MapaID', attribution: 'Imagery provided by services from the Global Imagery Browse Services (GIBS), operated by the NASA/GSFC/Earth Science Data and Information System (<a href="https://earthdata.nasa.gov">ESDIS</a>) with funding provided by NASA/HQ.',
-            bounds: [[-85.0511287776, -179.999999975], [85.0511287776, 179.999999975]],
-            minZoom: 1,
-            maxZoom: 8,
-            format: 'jpg',
-            time: '',
-            tilematrixset: 'GoogleMapsCompatible_Level'});
-    var baseMaps = {
-      "Topographic": topographic,
-      "Streets": streets,
-      "Roads": roads,
-      "Night": night
-    };
-    
-    L.control.layers(baseMaps).addTo(this.mapa);
-  }
-
-  slidezoom(){
-    this.mapa.setZoom(this.slidervalue);
-  }
-  getCapitales(): void {
-    this.markers=this.myServiceService.getCapitales();
-  }
-  buscarCapital(){
-    var encontrado = false;
-    for(var i = 0; i<this.markers.length;i++){
-      if(String(this.juegoCapi)==String(this.markers[i][0])){
-        this.dibujar(String(this.markers[i][1]),String(this.markers[i][2]));
-        encontrado = true;
+  openDialog(capital: Localizacion): void{
+    const dialogRef = this.dialog.open(BorrarIncendioDialogComponent, {
+      width: '250px',
+      data: {llama: this.llama, objeto: capital, borrar: this.borrar }
+    });
+    dialogRef.afterClosed().subscribe(result => { 
+      console.log(result);
+      if(result){
+        this.eliminarCapital(capital);
       }
-    }
-    if(!encontrado){
-      alert("Capital no encontrada");
-    }
-    
+    });
   }
-  dibujar(a?:string, b?:string){
-    var circle = L.circle([a, b], {
-      color: 'green',
-      fillColor: '#36EC1B',
-      fillOpacity: 0.5,
-      radius: 100000
-  }).addTo(this.mapa);
+  añadirCapital(nombre:string, la: string, lo: string): void {
+    var id = this.capitales[this.capitales.length-1].id+1;
+    nombre = nombre.trim();
+    la = la.trim();
+    lo = lo.trim();
+    var est = new Localizacion(id,nombre,la,lo);
+    this.servicio.añadirCapital(est).subscribe(loc => {
+      this.capitales.push(loc);
+      this.getCapitales()});
   }
-  quieresjugar(){
-    this.buscar=true;
+  openDialogCrear(): void {
+    const dialogRef = this.dialog.open(CrearIncendioDialogComponent, {
+      width: '500px',
+      data: {llamaCrear: this.llamaCrear, nombre: this.nombre, latitud: this.latitud, longitud: this.longitud }
+    });
+    dialogRef.afterClosed().subscribe(result => { 
+      this.nombre=result.nombre,
+      this.latitud=result.latitud,
+      this.longitud=result.longitud,
+      this.añadirCapital(this.nombre, this.latitud, this.longitud);
+    });
+  } 
+  openDialogEdit(capital: Localizacion): void{
+    const dialogRef = this.dialog.open(EditarIncendioDialogComponent, {
+      width: '500px',
+      data: {llama: this.llama, objeto: capital }
+    });
+    dialogRef.afterClosed().subscribe(result => { this.guardarCapital(capital);});
   }
-  goBack(): void{
-    this.location.back();
-  }
-  }
+}

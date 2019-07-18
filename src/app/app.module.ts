@@ -34,6 +34,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { BorrarIncendioDialogComponent } from './mapIncendios/borrarIncendioDialog/borrarIncendioDialog.component';
 import { EditarIncendioDialogComponent } from './mapIncendios/editarIncendioDialog/editarIncendioDialog.component';
+import { CrearIncendioDialogComponent } from './mapIncendios/crearIncendioDialog/crearIncendioDialog.component';
 @NgModule({
    declarations: [
       AppComponent,
@@ -47,7 +48,8 @@ import { EditarIncendioDialogComponent } from './mapIncendios/editarIncendioDial
       TabsComponent,
       MapaComponent,
       BorrarIncendioDialogComponent,
-      EditarIncendioDialogComponent
+      EditarIncendioDialogComponent,
+      CrearIncendioDialogComponent
    ],
    imports: [
       BrowserModule,
@@ -77,7 +79,8 @@ import { EditarIncendioDialogComponent } from './mapIncendios/editarIncendioDial
    ],
    entryComponents: [
       BorrarIncendioDialogComponent,
-      EditarIncendioDialogComponent
+      EditarIncendioDialogComponent,
+      CrearIncendioDialogComponent
    ],
    exports: [
       MatIconModule,

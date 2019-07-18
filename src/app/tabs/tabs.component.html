@@ -1,10 +1,4 @@
 <mat-tab-group dynamicHeight>
-    <mat-tab label="Ver Datos">
-      <div class="elegirMapaBox mat-elevation-z4">
-        <button mat-raised-button color="primary" (click)="normal.emit(1)">Normal</button>
-        <button mat-raised-button color="primary" (click)="topo.emit(1)">Topográfico</button>
-      </div>
-    </mat-tab>
     <mat-tab label="Elegir Mapa">
       <div class="elegirMapaBox mat-elevation-z4">
           <button class="botonesEM" mat-raised-button color="primary" [disabled]="dis=='incendios'"(click)="incendios.emit(1)">Marcadores: Incendios</button>
@@ -17,6 +11,12 @@
           <button class="botonesEM" mat-raised-button color="primary" [disabled]="dis=='trenes'"(click)="trenes.emit(1)">Trenes</button>
           <mat-divider></mat-divider>
           <button class="botonesEM" mat-raised-button color="primary" [disabled]="dis=='aviones'"(click)="aviones.emit(1)">Aviones</button>
+      </div>
+    </mat-tab>
+    <mat-tab label="Ver Datos">
+      <div class="elegirMapaBox mat-elevation-z4">
+        <button mat-raised-button color="primary" (click)="normal.emit(1)">Normal</button>
+        <button mat-raised-button color="primary" (click)="topo.emit(1)">Topográfico</button>
       </div>
     </mat-tab>
   </mat-tab-group>
@@ -66,5 +66,3 @@
         <button id="verVu" mat-raised-button color="primary" (click)="dibujarVuelo.emit()">Ver Vuelo</button>
       </mat-card-actions>
     </mat-card>
-    <label>{{valorOrigen}}</label>
-    <label>{{valorDestino}}</label>

@@ -24,3 +24,7 @@ table {
   font-size: 150%;
   background-color: #00C853;
 }
+.mat-elevation-z8 {
+  overflow-y: scroll;
+  max-height: 700px;
+}

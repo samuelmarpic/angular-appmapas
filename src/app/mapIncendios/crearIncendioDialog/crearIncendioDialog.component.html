@@ -1,0 +1,27 @@
+<div mat-dialog-content>
+  <p class="header" style="text-align: center">¿Desea crear {{data.llamaCrear}}?</p>
+  <mat-form-field>
+    <div class="inpLab">
+    <p>Nombre: </p><input matInput [(ngModel)]="data.nombre">
+    </div>
+  </mat-form-field>
+  <br/>
+  <mat-form-field>
+    <div class="inpLab">
+      <p>Latitud: </p><input matInput [(ngModel)]="data.latitud">
+    </div>
+  </mat-form-field>
+  <br/>
+  <mat-form-field>
+    <div class="inpLab">
+      <p>Longitud: </p><input matInput [(ngModel)]="data.longitud">
+    </div>
+  </mat-form-field>
+</div>
+<mat-label class="errorDistancia" *ngIf="data.nombre==null || data.latitud == null ||data.longitud==null">Rellene todos los campos</mat-label>
+<div mat-dialog-actions>
+  <button mat-raised-button class="No" (click)="onNoClick()">No Gracias</button>
+  <div *ngIf="data.nombre==null || data.latitud == null ||data.longitud==null || data.nombre=='' || data.latitud == '' ||data.longitud==''; then sinRellenar else relleno"></div>
+  <ng-template #sinRellenar> <button [disabled]="true" mat-raised-button class="crear" color="primary" [mat-dialog-close]="data" cdkFocusInitial>Crear</button></ng-template>
+  <ng-template #relleno> <button [disabled]="false" mat-raised-button class="crear" color="primary" [mat-dialog-close]="data" cdkFocusInitial>Crear</button></ng-template>
+</div>

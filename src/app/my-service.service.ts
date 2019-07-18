@@ -64,21 +64,63 @@ constructor(private http: HttpClient) { }
     const id = typeof incendio === 'number' ? incendio : incendio.id;
     return this.http.put(`${this.url+'/incendios'}/${id}`, JSON.stringify(incendio), httpOptions);
   }
+  añadirIncendio(inc: Localizacion):Observable<Localizacion>{
+    console.log(inc.nombre);
+    return this.http.post<Localizacion>(this.url+'/incendios/',JSON.stringify(inc),httpOptions);
+  }
   getCapitales(): Observable<Localizacion[]> {
     return this.http.get<Localizacion[]>(this.url+'/capitales');
+  }
+  eliminarCapital(capital: Localizacion | number): Observable<Localizacion> {
+    const id = typeof capital === 'number' ? capital : capital.id;
+    const urli = `${this.url+'/capitales'}/${id}`;
+  
+    return this.http.delete<Localizacion>(urli, httpOptions);
+  }
+  guardarCapital(capital: Localizacion |number): Observable<any> {
+    const id = typeof capital === 'number' ? capital : capital.id;
+    return this.http.put(`${this.url+'/capitales'}/${id}`, JSON.stringify(capital), httpOptions);
+  }
+  añadirCapital(cap: Localizacion):Observable<Localizacion>{
+    console.log(cap.nombre);
+    return this.http.post<Localizacion>(this.url+'/capitales/',JSON.stringify(cap),httpOptions);
   }
   getEstaciones(): Observable<Localizacion[]> {
     return this.http.get<Localizacion[]>(this.url+'/estaciones');
   }
+  eliminarEstacion(estacion: Localizacion | number): Observable<Localizacion> {
+    const id = typeof estacion === 'number' ? estacion : estacion.id;
+    const urli = `${this.url+'/estaciones'}/${id}`;
+  
+    return this.http.delete<Localizacion>(urli, httpOptions);
+  }
+  guardarEstacion(estacion: Localizacion |number): Observable<any> {
+    const id = typeof estacion === 'number' ? estacion : estacion.id;
+    return this.http.put(`${this.url+'/estaciones'}/${id}`, JSON.stringify(estacion), httpOptions);
+  }
+  añadirEstacion(est: Localizacion):Observable<Localizacion>{
+    console.log(est.nombre);
+    return this.http.post<Localizacion>(this.url+'/estaciones/',JSON.stringify(est),httpOptions);
+  }
   getAeropuertos(): Observable<Localizacion[]> {
     return this.http.get<Localizacion[]>(this.url+'/aeropuertos');
+  }
+  eliminarAeropuerto(aeropuerto: Localizacion | number): Observable<Localizacion> {
+    const id = typeof aeropuerto === 'number' ? aeropuerto : aeropuerto.id;
+    const urli = `${this.url+'/aeropuertos'}/${id}`;
+  
+    return this.http.delete<Localizacion>(urli, httpOptions);
+  }
+  guardarAeropuerto(aeropuerto: Localizacion |number): Observable<any> {
+    const id = typeof aeropuerto === 'number' ? aeropuerto : aeropuerto.id;
+    return this.http.put(`${this.url+'/aeropuertos'}/${id}`, JSON.stringify(aeropuerto), httpOptions);
+  }
+  añadirAeropuerto(aer: Localizacion):Observable<Localizacion>{
+    console.log(aer.nombre);
+    return this.http.post<Localizacion>(this.url+'/aeropuertos/',JSON.stringify(aer),httpOptions);
   }
   addLocalizacion(loc: Localizacion):Observable<Localizacion>{
     console.log(loc.nombre);
     return this.http.post<Localizacion>(this.url+'/localizaciones/',JSON.stringify(loc),httpOptions);
-  }
-  añadirIncendio(inc: Localizacion):Observable<Localizacion>{
-    console.log(inc.nombre);
-    return this.http.post<Localizacion>(this.url+'/incendios/',JSON.stringify(inc),httpOptions);
   }
 }

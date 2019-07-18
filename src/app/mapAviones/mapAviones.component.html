@@ -1,87 +1,44 @@
-  <body style="text-align:center" >
-      <h1>
-          <br/>
-          <br/>
-        Mapa de Aviones
-      </h1>
-      <h2>
-        En este mapa puedes visualizar los aeropuertos más importantes del mundo
-      </h2>
-
-  <div class="mapa-div" id="map">
-
-
-  </div>
-  <label class="label-zoom">Zoom: </label><mat-slider [(ngModel)]="slidervalue" (change)="slidezoom()" min="1" max="10" value="slidervalue" step="1"></mat-slider>
-
-  <div class="vistaVerAeropuertos" >
-    <label *ngIf="(verAeropuertos == false) && (verVuelo == false)" class="verAeropuertos-label">¿Quieres ver todos los aeropuertos?   </label>
-    <button *ngIf="(verAeropuertos == false) && (verVuelo == false)" class="verAeropuertos-button" mat-raised-button color="primary" [(ngModel)]="verAeropuertos" (click)="verAeropuertosBut()">Ver Aeropuertos</button>
-    
-    <label *ngIf="(verAeropuertos == false) && (verVuelo == false)" class="verVuelo-label">¿Quieres ver un vuelo?   </label>
-    <button *ngIf="(verAeropuertos == false) && (verVuelo == false)" class="verVuelo-button" mat-raised-button color="primary" [(ngModel)]="verVuelo" (click)="verVueloBut()">Ver Vuelo</button>
-    <button class="back" mat-raised-button color="primary" (click)="goBack()">Go Back</button>
-  </div>
-
- 
-  <!-- Tabla de aeropuertos 
-  <table>
-    <tr *ngFor="let item of lista;let impar = odd;let par = even;" [ngClass]="{azul:par,verde:impar}">
-    <td>{{item}}</td>
-    </tr>
-    </table>
-  -->
-  <br/>
-  <br/>
-      <table class="blueTable" *ngIf="verAeropuertos == true" mdbTable mdbTableScroll scrollY="true" maxHeight="200" bordered="true">
-      <tbody>
-        <thead>
-          <td><b>Nombre</b></td><td><b>Latitud</b></td><td><b>Longitud</b></td><td><b>Ver</b></td>
-      </thead>
-      
-      <tr *ngFor="let item of Ciudades.ciud;let impar = odd;let par = even;">
-        <td *ngFor="let i of item">{{ i }}</td>
-        <td><button class="verUnAeropuerto" mat-raised-button color="primary" (click)="verUnAeropuertoBut(item)">Ver</button></td>
-      </tr>
-    </tbody>
-    </table>
-  <mat-card class="example-card" *ngIf="verVuelo == true">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <br/>
-      <mat-card-title class="tituloCard">Ver Un Vuelo</mat-card-title>
-    </mat-card-header>
-    <br/>
-    <mat-card-content>
-        <h4>Origen</h4>
-        <mat-form-field>
-          <mat-label>Seleccionar</mat-label>
-          <mat-select [(ngModel)]="valorOrigen">
-            <mat-option *ngFor="let item of Ciudades.ciud" [value]="item[0]">
-              {{item[0]}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <h4>Destino</h4>
-        <mat-form-field>
-          <mat-label>Seleccionar</mat-label>
-          <mat-select [(ngModel)]="valorDestino">
-            <mat-option *ngFor="let item of Ciudades.ciud" [value]="item[0]">
-              {{item[0]}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <br *ngIf="this.distanciapuntos!=0"/>
-        <br *ngIf="this.distanciapuntos!=0"/>
-        <br *ngIf="this.distanciapuntos!=0"/>
-        <mat-label class="labelDistancia" *ngIf="this.distanciapuntos!=0">La distancia del vuelo es: {{this.distanciapuntos}} km</mat-label>
-        <br *ngIf="this.valorOrigen==this.valorDestino && this.valorOrigen!=null"/>
-        <mat-label class="errorDistancia" *ngIf="this.valorOrigen==this.valorDestino && this.valorOrigen!=null">Error, selecciona un origen y un destino diferente</mat-label>
-      </mat-card-content>
-    <mat-card-actions>
-      <button (click)="dibujarVuelo()">Ver Vuelo</button>
-    </mat-card-actions>
-  </mat-card>
-  </body>
-
+<div class="tabla">
+  <mat-table *ngIf="mostrarTabla" [dataSource]="dataSource" class="mat-elevation-z8" >
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
   
+    <!-- Name Column -->
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="latitud">
+      <mat-header-cell *matHeaderCellDef> Latitud </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.latitud}} </mat-cell>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="longitud">
+      <mat-header-cell *matHeaderCellDef> Longitud </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.longitud}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="editar/borrar">
+        <mat-header-cell *matHeaderCellDef> Editar/Borrar </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button class="edit" mat-flat-button (click)="openDialogEdit(element)">
+          <mat-icon class="headerIcon">edit</mat-icon>
+        </button> 
+          <button class="delete" mat-flat-button (click)="openDialog(element)">
+        <!--<button class="delete" mat-flat-button (click)="eliminarIncendio(element)">-->
+            <mat-icon class="headerIcon">delete</mat-icon>
+          </button> 
+      </mat-cell>
+      </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <button mat-raised-button class="añadir" color="primary" (click)="openDialogCrear()">+</button>
+  </div>

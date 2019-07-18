@@ -20,6 +20,7 @@ export class MapaComponent implements OnInit {
   localizaciones: Localizacion[];
   estaciones: Localizacion[];
   aeropuertos: Localizacion[];
+  
   constructor(private servicio: MyServiceService) { }
 
   ngOnInit() {

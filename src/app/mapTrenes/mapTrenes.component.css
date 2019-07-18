@@ -1,46 +1,30 @@
-div{
-    margin: 0 auto;
-    height: 700px;
-    width: 50%;
+table {
+  width: 100%;
 }
-h1 {
-  color: #7FA4B4;
-  font-family: verdana;
-  font-size: 300%
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
 }
-h2 {
-  color: #7FA4B4;
-  font-family: verdana;
-  font-size: 200%
+.delete {
+  margin-left:2%;
+  color: rgb(255,255,255);
+  background-color: #D32F2F;
 }
-button {
-  margin-top: 20px;
-  font-family: Arial;
-  background-color: #D1D1D7;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  cursor: hand;
+.edit {
+  color: rgb(255,255,255);
+  background-color: #FFC107;
 }
-  .nuevoMarcador-label {
-    display: inline-block;
-    width: 30em;
-    margin: .5em 0;
-    color: #5960CD;
-    font-weight: bold;
-  }
-  .nuevoMarcador-input {
-    height: 2em;
-    font-size: 1em;
-    padding-left: .4em;
-  }
-.vistaNormal-label {
-    display: inline-block;
-    font-size: 150%;
-    color: #5960CD;
-    font-weight: bold;
-  }
-  .vistaNormal-button {
-    margin-left: 20px;
-  }
+.añadir {
+  display: block;
+  margin-top: 1%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 5%;
+  font-size: 150%;
+  background-color: #00C853;
+}
+.mat-elevation-z8 {
+  overflow-y: scroll;
+  max-height: 700px;
+}

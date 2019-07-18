@@ -1,1 +1,44 @@
-          <div id="map"></div>
+<div class="tabla">
+    <mat-table *ngIf="mostrarTabla" [dataSource]="dataSource" class="mat-elevation-z8" >
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="nombre">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="latitud">
+        <mat-header-cell *matHeaderCellDef> Latitud </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.latitud}} </mat-cell>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="longitud">
+        <mat-header-cell *matHeaderCellDef> Longitud </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.longitud}} </mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="editar/borrar">
+          <mat-header-cell *matHeaderCellDef> Editar/Borrar </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button class="edit" mat-flat-button (click)="openDialogEdit(element)">
+            <mat-icon class="headerIcon">edit</mat-icon>
+          </button> 
+            <button class="delete" mat-flat-button (click)="openDialog(element)">
+          <!--<button class="delete" mat-flat-button (click)="eliminarIncendio(element)">-->
+              <mat-icon class="headerIcon">delete</mat-icon>
+            </button> 
+        </mat-cell>
+        </ng-container>
+    
+      <mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <button mat-raised-button class="añadir" color="primary" (click)="openDialogCrear()">+</button>
+    </div>

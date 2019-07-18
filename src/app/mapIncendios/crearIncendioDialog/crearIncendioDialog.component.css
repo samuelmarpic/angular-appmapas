@@ -1,0 +1,16 @@
+.header {
+    font-size: 150%;
+  }
+.No {
+    margin-left:2%;
+    color: rgb(255,255,255);
+    background-color: #D32F2F;
+    display:block;
+    margin-left: auto;
+    
+  }
+.crear {
+    display:block;
+    margin-right: auto;
+    background-color: #00C853;
+}

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import sampleData from '/home/marina/angular-appmapas/src/assets/ciudades.json';
-import { Location } from '@angular/common';
+import { MyServiceService } from '../my-service.service';
+import { Localizacion } from '../localizacion';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { BorrarIncendioDialogComponent } from '../mapIncendios/borrarIncendioDialog/borrarIncendioDialog.component';
+import { EditarIncendioDialogComponent } from '../mapIncendios/editarIncendioDialog/editarIncendioDialog.component';
+import { CrearIncendioDialogComponent } from '../mapIncendios/crearIncendioDialog/crearIncendioDialog.component';
 
 declare let L;
 
@@ -10,115 +14,84 @@ declare let L;
   styleUrls: ['./mapAviones.component.css']
 })
 export class MapAvionesComponent implements OnInit {
-  slidervalue = 5;
-  distanciapuntos = 0;
-  anterior=null;
-  verAeropuertos = false;
-  public verUnAeropuerto;
-  verVuelo = false;
-  valorOrigen=null;
-  valorDestino=null;
-  Ciudades: any = sampleData;
+  llama: string = "el aeropuerto de";
+  llamaCrear: string = "un aeropuerto";
+  nombre: string;
+  latitud: string;
+  longitud: string;
+  mostrarTabla=false;
+  borrar: boolean = false;
+  code;
+  aeropuertos;
+  displayedColumns: string[];
+  dataSource;
+  constructor(private servicio: MyServiceService,
+    public dialog: MatDialog) { }
 
-  constructor(
-    private location: Location
-  ) { }
-  mapa;
   ngOnInit() {
-    this.mapInit();
-    this.markersInit();
-    this.grupoLayerMapas();
-    
+    this.getAeropuertos();
   }
-
-  mapInit(){
-    this.mapa= L.map('map').setView([40.0, 20.0], 2);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(this.mapa);
+  getAeropuertos():void{
+    this.servicio.getAeropuertos().subscribe(aeropuerto => {
+      this.mostrar(aeropuerto);
+      this.aeropuertos=aeropuerto;
+    });
   }
-  markersInit(){
-    for (var i = 0; i < this.Ciudades.ciud.length; i++) {
-      var marker = new L.marker([this.Ciudades.ciud[i][1],this.Ciudades.ciud[i][2]])
-        .bindPopup(this.Ciudades.ciud[i][0])
-        .addTo(this.mapa);
+  mostrar(aeropuerto){
+    this.displayedColumns = ['id', 'nombre', 'latitud', 'longitud', 'editar/borrar'];
+    this.dataSource = aeropuerto;
+    this.mostrarTabla=true;
+  }
+  eliminarAeropuerto(aeropuerto: Localizacion): void{
+    this.aeropuertos = this.aeropuertos.filter(i => i!= aeropuerto);
+    this.servicio.eliminarAeropuerto(aeropuerto).subscribe( res => {
+      this.dataSource = this.dataSource.filter(i => i !== aeropuerto);
+      this.code = `   `;
     }
+    );
   }
-  slidezoom(){
-    this.mapa.setZoom(this.slidervalue);
+  guardarAeropuerto(aeropuerto: Localizacion): void{
+    this.servicio.guardarAeropuerto(aeropuerto).subscribe();
   }
-  verAeropuertosBut(){
-    this.verAeropuertos= true;
-  }
-  verVueloBut(){
-    this.verVuelo=true;
-  }
-  verUnAeropuertoBut(a?){
-    if (this.anterior != null){
-    this.mapa.removeLayer(this.anterior);
-    }
-    this.mapa.setView([a[1],a[2]]);
-    this.mapa.setZoom(5);
-    this.dibujar(String(a[1]),String(a[2]));
-  }
-  dibujar(a?:string, b?:string){
-    var circle = L.circle([a, b], {
-      color: 'green',
-      fillColor: '#36EC1B',
-      fillOpacity: 0.5,
-      radius: 100000
-  }).addTo(this.mapa);
-    this.anterior=circle;
-  }
-  goBack(): void{
-    this.location.back();
-  }
-  grupoLayerMapas(){
-
-    var topographic = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {id: 'MapID', attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'}),
-    streets   = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {id: 'MapID', attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}),
-    roads = L.tileLayer('https://maps.heigit.org/openmapsurfer/tiles/roads/webmercator/{z}/{x}/{y}.png', {id: 'MapID', attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> | Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}),
-    night = L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}', {id: 'MapaID', attribution: 'Imagery provided by services from the Global Imagery Browse Services (GIBS), operated by the NASA/GSFC/Earth Science Data and Information System (<a href="https://earthdata.nasa.gov">ESDIS</a>) with funding provided by NASA/HQ.',
-            bounds: [[-85.0511287776, -179.999999975], [85.0511287776, 179.999999975]],
-            minZoom: 1,
-            maxZoom: 8,
-            format: 'jpg',
-            time: '',
-            tilematrixset: 'GoogleMapsCompatible_Level'});
-    var baseMaps = {
-      "Topographic": topographic,
-      "Streets": streets,
-      "Roads": roads,
-      "Night": night
-    };
-    
-    L.control.layers(baseMaps).addTo(this.mapa);
-  }
-  dibujarVuelo(){
-    var aerOr = [];
-    var aerDes = [];
-    for (var i = 0; i < this.Ciudades.ciud.length; i++) {
-      if(String(this.valorOrigen)==String(this.Ciudades.ciud[i][0])){
-        aerOr=this.Ciudades.ciud[i];
+  openDialog(aeropuerto: Localizacion): void{
+    const dialogRef = this.dialog.open(BorrarIncendioDialogComponent, {
+      width: '250px',
+      data: {llama: this.llama, objeto: aeropuerto, borrar: this.borrar }
+    });
+    dialogRef.afterClosed().subscribe(result => { 
+      console.log(result);
+      if(result){
+        this.eliminarAeropuerto(aeropuerto);
       }
-      if(String(this.valorDestino)==String(this.Ciudades.ciud[i][0])){
-        aerDes=this.Ciudades.ciud[i];
-      }
-    }
-    
-    this.distanciapuntos= Number((L.latLng(aerOr[1],aerOr[2]).distanceTo(L.latLng(aerDes[1],aerDes[2]))/1000).toFixed(2));
-    var polylinePoints = [
-      [aerOr[1], aerOr[2]],
-      [aerDes[1], aerDes[2]]
-    ];
-    if(aerOr[0]!=aerDes[0]){
-    var polyline = L.polyline(polylinePoints, 
-      { weight: 10,
-      strock: true,
-      color: 'red',
-      }).addTo(this.mapa);
-    
-    this.mapa.setView([((aerOr[1]+aerDes[1])/2), ((aerOr[2]+aerDes[2])/2)]);
+    });
   }
+  añadirAeropuerto(nombre:string, la: string, lo: string): void {
+    var id = this.aeropuertos[this.aeropuertos.length-1].id+1;
+    nombre = nombre.trim();
+    la = la.trim();
+    lo = lo.trim();
+    var inc = new Localizacion(id,nombre,la,lo);
+    this.servicio.añadirAeropuerto(inc).subscribe(loc => {
+      this.aeropuertos.push(loc);
+      this.getAeropuertos()});
+  }
+  openDialogCrear(): void {
+    const dialogRef = this.dialog.open(CrearIncendioDialogComponent, {
+      width: '500px',
+      data: {llamaCrear: this.llamaCrear, nombre: this.nombre, latitud: this.latitud, longitud: this.longitud }
+    });
+    dialogRef.afterClosed().subscribe(result => { 
+      this.nombre=result.nombre,
+      this.latitud=result.latitud,
+      this.longitud=result.longitud,
+      this.añadirAeropuerto(this.nombre, this.latitud, this.longitud);
+    });
+  } 
+  openDialogEdit(aeropuerto: Localizacion): void{
+    const dialogRef = this.dialog.open(EditarIncendioDialogComponent, {
+      width: '500px',
+      data: {llama: this.llama, objeto: aeropuerto }
+    });
+    dialogRef.afterClosed().subscribe(result => { this.guardarAeropuerto(aeropuerto);});
   }
 }
